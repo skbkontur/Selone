@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <script>
+            renderTemplate = function (templateId, placeholderId) {
+                var template = document.querySelector("[templateId='" + templateId + "']");
+                var placeholder = document.getElementById(placeholderId);
+                placeholder.innerHTML = template.innerHTML;
+            };
+        </script>
+        <style>
+            [templateId] {
+                display: none;
+            }
+            .border-red {
+                display: inline-block;
+                padding: 5px;
+                border: solid red 1px;
+            }
+            .border-blue {
+                display: inline-block;
+                padding: 5px;
+                border: solid blue 1px;
+            }
+        </style>
+    </head>
+    <body>
+    <div>
+        <h1>Static element</h1>
+        <div id="static-element">
+            <span>I am static</span>
+        </div>
+    </div>
+    <hr/>
+    <div>
+        <h1>Lazy element</h1>
+        <div>
+            <button id="lazy-element-create" onclick="renderTemplate('lazy-element', 'lazy-element-placeholder')">Create element</button>
+            <button id="lazy-element-remove" onclick="renderTemplate('lazy-element-empty', 'lazy-element-placeholder')">Remove element</button>
+        </div>
+        <div id="lazy-element-placeholder">
+        </div>
+        <div templateId="lazy-element">
+            <div id="lazy-element" class="border-blue">I am lazy</div>
+        </div>
+        <div templateId="lazy-element-empty">
+        </div>
+    </div>
+    <hr/>
+    <div>
+        <h1>Lazy nested element</h1>
+        <div>
+            <button id="lazy-nested-element-create" onclick="renderTemplate('lazy-nested-element', 'lazy-nested-element-placeholder')">Create nested element</button>
+            <button id="lazy-nested-element-remove" onclick="renderTemplate('lazy-nested-element-empty', 'lazy-nested-element-placeholder')">Remove nested element</button>
+        </div>
+        <div id="lazy-nested-element-placeholder">
+        </div>
+        <div templateId="lazy-nested-element">
+            <div id="lazy-nested-element-wrapper" class="border-red">
+                <div id="lazy-nested-element" class="border-blue">I am nested lazy</div>
+            </div>
+        </div>
+        <div templateId="lazy-nested-element-empty">
+        </div>
+    </div>
+    <hr/>
+    </body>
+</html>

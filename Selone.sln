@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selone", "Selone\Selone.csproj", "{F415B464-A1BD-4DE2-B379-F0BC50F011A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selone.Tests", "Selone.Tests\Selone.Tests.csproj", "{D489D989-EC05-42A0-8873-C4FA368E4653}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F415B464-A1BD-4DE2-B379-F0BC50F011A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F415B464-A1BD-4DE2-B379-F0BC50F011A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F415B464-A1BD-4DE2-B379-F0BC50F011A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F415B464-A1BD-4DE2-B379-F0BC50F011A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D489D989-EC05-42A0-8873-C4FA368E4653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D489D989-EC05-42A0-8873-C4FA368E4653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D489D989-EC05-42A0-8873-C4FA368E4653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D489D989-EC05-42A0-8873-C4FA368E4653}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

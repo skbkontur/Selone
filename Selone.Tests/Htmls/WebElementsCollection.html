@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <script>
+            renderTemplate = function (templateId, placeholderId) {
+                var template = document.querySelector("[templateId='" + templateId + "']");
+                var placeholder = document.getElementById(placeholderId);
+                placeholder.innerHTML = template.innerHTML;
+            };
+        </script>
+        <style>
+            [templateId] {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+    <div>
+        <h1>Static collection</h1>
+        <div id="static-collection">
+            <div>s1</div>
+            <div>s2</div>
+            <div>s3</div>
+            <div>s4</div>
+        </div>
+    </div>
+    <hr/>
+    <div>
+        <h1>Lazy collection</h1>
+        <div>
+            <button id="lazy-collection-create" onclick="renderTemplate('lazy-collection', 'lazy-collection')">Create collection</button>
+            <button id="lazy-collection-remove" onclick="renderTemplate('lazy-collection-empty', 'lazy-collection')">Remove collection</button>
+        </div>
+        <div id="lazy-collection">
+        </div>
+        <div templateId="lazy-collection">
+            <div>l1</div>
+            <div>l2</div>
+            <div>l3</div>
+            <div>l4</div>
+        </div>
+        <div templateId="lazy-collection-empty">
+        </div>
+    </div>
+    <hr/>
+    <div>
+        <h1>Fixed collection</h1>
+        <div>
+            <button id="fixed-collection-set-original" onclick="renderTemplate('fixed-collection-original', 'fixed-collection')">Set original</button>
+            <button id="fixed-collection-set-modified" onclick="renderTemplate('fixed-collection-modified', 'fixed-collection')">Set modified</button>
+        </div>
+        <div id="fixed-collection">
+        </div>
+        <div templateId="fixed-collection-original">
+            <div data-id="aaa">text-aaa</div>
+            <div data-id="xxx">text-xxx</div>
+            <div data-id="yyy">text-yyy</div>
+            <div data-id="zzz">text-zzz</div>
+        </div>
+        <div templateId="fixed-collection-modified">
+            <div data-id="zzz">text-zzz</div>
+            <div data-id="xxx">text-xxx</div>
+            <div data-id="yyy">text-yyy</div>
+        </div>
+    </div>
+    <hr/>
+    </body>
+</html>

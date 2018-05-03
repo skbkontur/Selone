@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>Kontur.Selone.Tests</AssemblyName>
+    <Authors>Kontur</Authors>
+    <Company>Kontur</Company>
+    <Product>Kontur.Selone.Tests</Product>
+    <RootNamespace>Kontur.Selone.Tests</RootNamespace>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <LangVersion>latest</LangVersion>
+    <TargetFramework>net45</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\Build\Selone.Tests\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>..\Build\Selone.Tests\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Selone\Selone.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Kontur.RetryableAssertions" Version="0.0.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
+    <PackageReference Include="NUnit" Version="3.10.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.8.0" />
+  </ItemGroup>
+</Project>

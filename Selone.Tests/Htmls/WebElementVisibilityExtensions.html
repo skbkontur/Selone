@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <script>
+            renderTemplate = function (templateId, placeholderId) {
+                var template = document.querySelector("[templateId='" + templateId + "']");
+                var placeholder = document.getElementById(placeholderId);
+                placeholder.innerHTML = template.innerHTML;
+            };
+        </script>
+        <style>
+            [templateId] {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+    <div>
+        <h1>Visible</h1>
+        <div>
+            <button id="set-displayed" onclick="renderTemplate('displayed', 'placeholder')">Set displayed</button>
+            <button id="set-visible" onclick="renderTemplate('visible', 'placeholder')">Set visible</button>
+            <button id="set-hidden" onclick="renderTemplate('hidden', 'placeholder')">Set hidden</button>
+            <button id="set-absent" onclick="renderTemplate('absent', 'placeholder')">Set absent</button>
+        </div>
+        <div id="placeholder">
+        </div>
+        <div templateId="displayed">
+            <div data-id="target">displayed</div>
+        </div>
+        <div templateId="visible">
+            <div style="height: 5000px;">scroll down</div>
+            <div data-id="target">visible</div>
+        </div>
+        <div templateId="hidden">
+            <div data-id="target" style="display: none;">hidden</div>
+        </div>
+        <div templateId="absent">
+        </div>
+    </div>
+    </body>
+</html>
