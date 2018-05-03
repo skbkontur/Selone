@@ -55,8 +55,28 @@ var isVisible = element.Visible().Get();
 var isPresent = element.Present().Get();
 ```
 ### Extensible By selector
-...
+Native `FindElement` method receives instance of `By` class as selector. There are built-in selectors can be created with static methods like `By.Id(...)` or `By.Css(...)` etc. One trouble - there is no way to add selectors same way, because all methods are static. So we need something non-static. `SearchElement` has overload that receives `ByLambda` delegate. This technique allows to add new selectors 
+```csharp
+public static class SelectorExtensions
+{
+  public static By WithCustomAttribute(this ByDummy dummy, string value)
+  {
+    return By.Css($"[data-x-custom='{value}']");
+  }
+}
+
+var element = searchContext.SearchElement(x => x.WithCustomAttribute("attr-value"));
+```
+It is also posible to create something fluent-like
+```csharp
+var element = searchContext.SearchElement(x => x.MyCustomSelector().MayBe().Fluent());
+```
+
 ### Simple but smart collection of elements
-...
+Selone provides `SearchElements` method as alternative for `FindElements`
+It is lazy and it allows search for absent elements
+```csharp
+var elements = searchContext.SearchElements(x => x.......);
+```
 ### ...
 ...
