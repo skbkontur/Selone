@@ -3,11 +3,11 @@ Selone is a kit with base infrastructure for quick start of your own set of brow
 
 Selone is not yet another Selenium.WebDriver wrapper. Selone does not wrap, does not hide or narrow WebDriver functionality and does not prohibit it from being used. 
 
-Selone is not about assertions but it provides abitily for easy connect of third-party assertion library. For example NUnit with `Assert.That` and `IResolveConstraint` or FluentAssertions with `Should()` method.
+Selone is not about assertions but it provides abilitily for easy connect of third-party assertion library. For example NUnit with `Assert.That` and `IResolveConstraint` or FluentAssertions with `Should()` method.
 
-Selenium.WebDriver - it is low-level API for web browsers. So its direct usage in your high-order code may be inconvenient. But Selenium.WebDriver built using Interface Segregation Principle and can be easily extended.
+Selenium.WebDriver - it is low-level API for web browsers. So its direct usage in your high-level code may be inconvenient.
 
-Selone looks like extension that brings stability and more convenient API for your high-order code
+Selone looks like extension that brings stability and more convenient API for your high-level code
 
 ## Features
 ### Search for absent element
@@ -21,7 +21,7 @@ var element = searchContext.SearchElement(By.Id("absent-element-id"));
 //some actions
 element.Click();
 ```
-Of course you can search nested elements inside absent elemets
+Of course you can search nested elements inside absent elements
 ```csharp
 var container = searchContext.SearchElement(By.Id("absent-container-id"));
 var element = container.SearchElement(By.Id("absent-element-id"));
@@ -31,7 +31,7 @@ element.Click();
 So, using `SearchElement` method you can pre-declare and initialize all necessary controls in one place
 
 ### Automatic search of reattached element
-You cann't work with reattached element which was found using `FindElement` method. If element wad detached from DOM and then attached it becomes another element and you will get `StaleElementReferenceException` interacting with it.
+You can't work with reattached element which was found using `FindElement` method. If element was detached from DOM and then attached it becomes another element and you will get `StaleElementReferenceException` interacting with it.
 ```csharp
 var element = searchContext.FindElement(By.Id("disappearing-element"));
 searchContext.FindElement(By.Id("remove-from-dom-button")).Click();
@@ -54,8 +54,6 @@ var isDisplayed = element.Displayed().Get();
 var isVisible = element.Visible().Get();
 var isPresent = element.Present().Get();
 ```
-It is necessary to call `Get` because those methods returns not a value but a container to retrieve it. Container is necessary for inplementing expectations with waitings
-
 ### Extensible By selector
 ...
 ### Simple but smart collection of elements
