@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Kontur.Selone.Controls;
+﻿using Kontur.Selone.Controls;
 using Kontur.Selone.Selectors;
 using OpenQA.Selenium;
 
@@ -17,12 +16,12 @@ namespace Kontur.Selone.Extensions
             return new WebElementWrapper(searchContext, byLambda);
         }
 
-        public static IEnumerable<IWebElement> SearchElements(this ISearchContext searchContext, ItemBy itemBy)
+        public static IItemsCollection<IWebElement> SearchElements(this ISearchContext searchContext, ItemBy itemBy)
         {
             return new WebElementsCollection(searchContext, itemBy);
         }
 
-        public static IEnumerable<IWebElement> SearchElements(this ISearchContext searchContext, ItemByLambda itemByLambda)
+        public static IItemsCollection<IWebElement> SearchElements(this ISearchContext searchContext, ItemByLambda itemByLambda)
         {
             return new WebElementsCollection(searchContext, itemByLambda);
         }
