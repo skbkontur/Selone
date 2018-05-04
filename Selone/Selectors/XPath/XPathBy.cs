@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
 
-namespace Kontur.Selone.Selectors
+namespace Kontur.Selone.Selectors.XPath
 {
     public class XPathBy : By
     {

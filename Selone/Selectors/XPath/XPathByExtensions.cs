@@ -1,9 +1,9 @@
 ﻿using System;
 using OpenQA.Selenium;
 
-namespace Kontur.Selone.Selectors
+namespace Kontur.Selone.Selectors.XPath
 {
-    public static class ByExtensions
+    public static class XPathByExtensions
     {
         public static RootXPathBy Child(this ByDummy dummy)
         {

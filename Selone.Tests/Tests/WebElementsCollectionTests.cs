@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Kontur.Selone.Extensions;
-using Kontur.Selone.Selectors;
+using Kontur.Selone.Selectors.XPath;
 using Kontur.Selone.Tests.Browsers;
 using Kontur.Selone.Tests.Extensions;
 using NUnit.Framework;

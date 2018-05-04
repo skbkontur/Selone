@@ -1,6 +1,6 @@
-﻿namespace Kontur.Selone.Selectors
+﻿namespace Kontur.Selone.Selectors.XPath
 {
-    public static class ReactByExtensions
+    public static class ReactXPathByExtensions
     {
         public static XPathBy Component(this XPathBy xPathBy, string name)
         {

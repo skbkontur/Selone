@@ -1,4 +1,4 @@
-﻿namespace Kontur.Selone.Selectors
+﻿namespace Kontur.Selone.Selectors.XPath
 {
     public class RootXPathBy : XPathBy
     {
