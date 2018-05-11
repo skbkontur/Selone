@@ -7,7 +7,7 @@
             return xPathBy.WithAttribute("data-component-name", name);
         }
 
-        public static XPathBy Component<T>(this RootXPathBy xPathBy)
+        public static XPathBy Component<T>(this XPathBy xPathBy)
         {
             return xPathBy.WithAttribute("data-component-name", typeof(T).Name);
         }

@@ -5,14 +5,19 @@ namespace Kontur.Selone.Selectors.XPath
 {
     public static class XPathByExtensions
     {
-        public static RootXPathBy Child(this ByDummy dummy)
+        public static XPathBy XPath(this ByDummy dummy, string xpath = null)
         {
-            return XPathBy.Child();
+            return new XPathBy(xpath);
         }
 
-        public static RootXPathBy Descendant(this ByDummy dummy)
+        public static XPathBy XChild(this ByDummy dummy, string xpath = null)
         {
-            return XPathBy.Descendant();
+            return dummy.XPath().ThenChild(xpath);
+        }
+
+        public static XPathBy XDescendant(this ByDummy dummy, string xpath = null)
+        {
+            return dummy.XPath().ThenDescendant(xpath);
         }
 
         public static ItemBy FixedBy(this XPathBy xPathBy, Func<XPathBy, IWebElement, int, By> fix)

@@ -6,46 +6,46 @@ namespace Kontur.Selone.Selectors.XPath
 {
     public class XPathBy : By
     {
-        private readonly string xpath;
-
-        public XPathBy(string xpath)
+        public XPathBy(string selector = null)
         {
-            this.xpath = xpath;
+            Selector = selector ?? string.Empty;
         }
 
-        public static RootXPathBy Descendant()
-        {
-            return new RootXPathBy("//");
-        }
-
-        public static RootXPathBy Child()
-        {
-            return new RootXPathBy("/");
-        }
+        public string Selector { get; }
 
         public override IWebElement FindElement(ISearchContext context)
         {
-            return ((IFindsByXPath) context).FindElementByXPath(xpath);
+            return ((IFindsByXPath) context).FindElementByXPath(Selector);
         }
 
         public override ReadOnlyCollection<IWebElement> FindElements(ISearchContext context)
         {
-            return ((IFindsByXPath) context).FindElementsByXPath(xpath);
+            return ((IFindsByXPath) context).FindElementsByXPath(Selector);
         }
 
-        public XPathBy WithIndex(int index)
+        public new XPathBy XPath(string tail)
         {
-            return Concat($"[{index + 1}]");
+            return new XPathBy(Selector + tail);
         }
 
-        public XPathBy WithAttribute(string name)
+        public XPathBy ThenDescendant(string xpath = null)
         {
-            return Concat($"[@{name}]");
+            return XPath("//").XPath(xpath);
         }
 
-        public XPathBy WithAttribute(string name, string value)
+        public XPathBy ThenChild(string xpath = null)
         {
-            return Concat($"[@{name}='{value}']");
+            return XPath("/").XPath(xpath);
+        }
+
+        public XPathBy Tag(string tag)
+        {
+            return XPath(tag);
+        }
+
+        public XPathBy AnyTag()
+        {
+            return XPath("*");
         }
 
         public XPathBy WithId(string id)
@@ -53,19 +53,19 @@ namespace Kontur.Selone.Selectors.XPath
             return WithAttribute("id", id);
         }
 
-        public RootXPathBy ThenDescendant()
+        public XPathBy WithIndex(int index)
         {
-            return new RootXPathBy(xpath + "//");
+            return XPath($"[{index + 1}]");
         }
 
-        public RootXPathBy ThenChild()
+        public XPathBy WithAttribute(string name)
         {
-            return new RootXPathBy(xpath + "/");
+            return XPath($"[@{name}]");
         }
 
-        protected XPathBy Concat(string tail)
+        public XPathBy WithAttribute(string name, string value)
         {
-            return new XPathBy(xpath + tail);
+            return XPath($"[@{name}='{value}']");
         }
     }
 }

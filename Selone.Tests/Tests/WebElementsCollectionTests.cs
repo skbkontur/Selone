@@ -17,7 +17,7 @@ namespace Kontur.Selone.Tests.Tests
             var webDriver = Acquire(Browser.Chrome);
             webDriver.OpenTestHtml("WebElementsCollection");
 
-            var collection = webDriver.SearchElements(x => x.Descendant().AnyTag().FixedByAttribute("absent"));
+            var collection = webDriver.SearchElements(x => x.XDescendant().AnyTag().FixedByAttribute("absent"));
             Assert.That(collection, Is.Empty);
         }
 
@@ -29,7 +29,7 @@ namespace Kontur.Selone.Tests.Tests
 
             var setOriginalButton = webDriver.SearchElement(By.Id("fixed-collection-set-original"));
             var setModifiedButton = webDriver.SearchElement(By.Id("fixed-collection-set-modified"));
-            var collection = webDriver.SearchElements(x => x.Descendant().AnyTag().WithId("fixed-collection").ThenChild().AnyTag().FixedByAttribute("data-id"));
+            var collection = webDriver.SearchElements(x => x.XDescendant().AnyTag().WithId("fixed-collection").ThenChild().AnyTag().FixedByAttribute("data-id"));
 
             setOriginalButton.Click();
 
@@ -61,7 +61,7 @@ namespace Kontur.Selone.Tests.Tests
 
             var setOriginalButton = webDriver.SearchElement(By.Id("fixed-collection-set-original"));
             var setModifiedButton = webDriver.SearchElement(By.Id("fixed-collection-set-modified"));
-            var collection = webDriver.SearchElements(x => x.Descendant().AnyTag().WithId("fixed-collection").ThenChild().AnyTag().FixedByIndex());
+            var collection = webDriver.SearchElements(x => x.XDescendant().AnyTag().WithId("fixed-collection").ThenChild().AnyTag().FixedByIndex());
 
             setOriginalButton.Click();
 
@@ -91,7 +91,7 @@ namespace Kontur.Selone.Tests.Tests
             var webDriver = Acquire(Browser.Chrome);
             webDriver.OpenTestHtml("WebElementsCollection");
 
-            var collection = webDriver.SearchElement(By.Id("absent")).SearchElements(x => x.Descendant().AnyTag().FixedByAttribute("absent"));
+            var collection = webDriver.SearchElement(By.Id("absent")).SearchElements(x => x.XDescendant().AnyTag().FixedByAttribute("absent"));
             Assert.That(collection, Is.Empty);
         }
 
@@ -101,7 +101,7 @@ namespace Kontur.Selone.Tests.Tests
             var webDriver = Acquire(Browser.Chrome);
             webDriver.OpenTestHtml("WebElementsCollection");
 
-            var collection = webDriver.SearchElements(x => x.Descendant().AnyTag().WithId("static-collection").ThenChild().AnyTag().FixedByIndex());
+            var collection = webDriver.SearchElements(x => x.XDescendant().AnyTag().WithId("static-collection").ThenChild().AnyTag().FixedByIndex());
             Assert.That(collection.Select(x => x.Text), Is.EqualTo(new[] {"s1", "s2", "s3", "s4"}));
         }
 
@@ -113,7 +113,7 @@ namespace Kontur.Selone.Tests.Tests
 
             var createCollection = webDriver.SearchElement(By.Id("lazy-collection-create"));
             var removeCollection = webDriver.SearchElement(By.Id("lazy-collection-remove"));
-            var lazyCollection = webDriver.SearchElements(x => x.Descendant().AnyTag().WithId("lazy-collection").ThenChild().AnyTag().FixedByIndex());
+            var lazyCollection = webDriver.SearchElements(x => x.XDescendant().AnyTag().WithId("lazy-collection").ThenChild().AnyTag().FixedByIndex());
 
             Assert.That(lazyCollection, Is.Empty);
             createCollection.Click();
