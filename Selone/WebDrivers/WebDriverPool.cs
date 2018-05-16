@@ -53,7 +53,7 @@ namespace Kontur.Selone.WebDrivers
                 throw new Exception($"WebDriver {webDriver.GetType().Name} was not taken from the pool or already released");
             }
 
-            webDriver.CloseRedundantWindows();
+            webDriver.ResetWindows();
             queue.Enqueue(webDriver);
         }
     }
