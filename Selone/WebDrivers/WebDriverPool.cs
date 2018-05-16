@@ -18,20 +18,17 @@ namespace Kontur.Selone.WebDrivers
 
         public IWebDriver Acquire()
         {
-            var webDriver = queue.TryDequeue(out var existing) ? existing : factory.Create();
-            acquired.TryAdd(webDriver, true);
-            return webDriver;
+            return AcquireInternal();
+        }
+
+        public IPooledWebDriver AcquireWrapper()
+        {
+            return new PooledWebDriver(AcquireInternal(), ReleaseInternal);
         }
 
         public void Release(IWebDriver webDriver)
         {
-            if (!acquired.TryRemove(webDriver, out var dummy))
-            {
-                throw new Exception($"WebDriver {webDriver.GetType().Name} was not taken from the pool or already released");
-            }
-
-            webDriver.CloseRedundantWindows();
-            queue.Enqueue(webDriver);
+            ReleaseInternal(webDriver);
         }
 
         public void Clear()
@@ -40,6 +37,24 @@ namespace Kontur.Selone.WebDrivers
             {
                 webDriver.Dispose();
             }
+        }
+
+        private IWebDriver AcquireInternal()
+        {
+            var webDriver = queue.TryDequeue(out var existing) ? existing : factory.Create();
+            acquired.TryAdd(webDriver, true);
+            return webDriver;
+        }
+
+        private void ReleaseInternal(IWebDriver webDriver)
+        {
+            if (!acquired.TryRemove(webDriver, out var dummy))
+            {
+                throw new Exception($"WebDriver {webDriver.GetType().Name} was not taken from the pool or already released");
+            }
+
+            webDriver.CloseRedundantWindows();
+            queue.Enqueue(webDriver);
         }
     }
 }

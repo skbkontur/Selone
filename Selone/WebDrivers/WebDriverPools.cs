@@ -21,20 +21,17 @@ namespace Kontur.Selone.WebDrivers
 
         public IWebDriver Acquire(TKey key)
         {
-            var pool = GetPool(key);
-            var webDriver = pool.Acquire();
-            acquired.TryAdd(webDriver, key);
-            return webDriver;
+            return AcquireInternal(key);
+        }
+
+        public IPooledWebDriver AcquireWrapper(TKey key)
+        {
+            return new PooledWebDriver(AcquireInternal(key), ReleaseInternal);
         }
 
         public void Release(IWebDriver webDriver)
         {
-            if (!acquired.TryRemove(webDriver, out var key))
-            {
-                throw new Exception($"WebDriver {webDriver.GetType().Name} was not taken from the pool or already released");
-            }
-
-            GetPool(key).Release(webDriver);
+            ReleaseInternal(webDriver);
         }
 
         public void Clear()
@@ -43,6 +40,24 @@ namespace Kontur.Selone.WebDrivers
             {
                 pool.Value.Clear();
             }
+        }
+
+        private IWebDriver AcquireInternal(TKey key)
+        {
+            var pool = GetPool(key);
+            var webDriver = pool.Acquire();
+            acquired.TryAdd(webDriver, key);
+            return webDriver;
+        }
+
+        private void ReleaseInternal(IWebDriver webDriver)
+        {
+            if (!acquired.TryRemove(webDriver, out var key))
+            {
+                throw new Exception($"WebDriver {webDriver.GetType().Name} was not taken from the pool or already released");
+            }
+
+            GetPool(key).Release(webDriver);
         }
 
         private IWebDriverPool GetPool(TKey key)

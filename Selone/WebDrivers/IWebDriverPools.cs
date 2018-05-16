@@ -6,6 +6,7 @@ namespace Kontur.Selone.WebDrivers
     {
         WebDriverPools<TKey> Register(TKey key, IWebDriverFactory factory);
         IWebDriver Acquire(TKey key);
+        IPooledWebDriver AcquireWrapper(TKey key);
         void Release(IWebDriver webDriver);
         void Clear();
     }
