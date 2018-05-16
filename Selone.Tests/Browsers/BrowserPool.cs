@@ -20,8 +20,8 @@ namespace Kontur.Selone.Tests.Browsers
 
         private static readonly DelegateWebDriverCleaner cleaner = new DelegateWebDriverCleaner(x => x.ResetWindows());
 
-        public static readonly WebDriverPools<Browser> Instance =
-            new WebDriverPools<Browser>()
+        public static readonly IWebDriverKeyedPool<Browser> Instance =
+            new WebDriverKeyedPool<Browser>()
                 .Register(Browser.Chrome, ChromeDriverFactory, cleaner)
                 .Register(Browser.Ie, InternetExplorerDriverFactory, cleaner);
     }

@@ -4,12 +4,12 @@ using OpenQA.Selenium;
 
 namespace Kontur.Selone.WebDrivers
 {
-    public class WebDriverPools<TKey> : IWebDriverPools<TKey>
+    public class WebDriverKeyedPool<TKey> : IWebDriverKeyedPool<TKey>
     {
         private readonly ConcurrentDictionary<TKey, IWebDriverPool> pools = new ConcurrentDictionary<TKey, IWebDriverPool>();
         private readonly ConcurrentDictionary<IWebDriver, TKey> acquired = new ConcurrentDictionary<IWebDriver, TKey>();
 
-        public WebDriverPools<TKey> Register(TKey key, IWebDriverFactory factory, IWebDriverCleaner cleaner)
+        public IWebDriverKeyedPool<TKey> Register(TKey key, IWebDriverFactory factory, IWebDriverCleaner cleaner)
         {
             if (!pools.TryAdd(key, new WebDriverPool(factory, cleaner)))
             {
