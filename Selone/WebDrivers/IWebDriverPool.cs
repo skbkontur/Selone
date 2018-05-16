@@ -6,6 +6,7 @@ namespace Kontur.Selone.WebDrivers
     {
         IWebDriver Acquire();
         void Release(IWebDriver webDriver);
+        IPooledWebDriver AcquireWrapper();
         void Clear();
     }
 }

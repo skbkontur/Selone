@@ -8,18 +8,18 @@ using OpenQA.Selenium;
 
 namespace Kontur.Selone.Controls
 {
-    public class ItemsCollection<T> : IItemsCollection<T>
+    public class ElementsCollection<T> : IElementsCollection<T>
     {
         private readonly ISearchContext searchContext;
         private readonly ItemBy itemBy;
         private readonly Func<ISearchContext, By, IWebElement, T> itemFactory;
 
-        public ItemsCollection(ISearchContext searchContext, ItemByLambda itemByLambda, Func<ISearchContext, By, IWebElement, T> itemFactory)
+        public ElementsCollection(ISearchContext searchContext, ItemByLambda itemByLambda, Func<ISearchContext, By, IWebElement, T> itemFactory)
             : this(searchContext, itemByLambda(null), itemFactory)
         {
         }
 
-        public ItemsCollection(ISearchContext searchContext, ItemBy itemBy, Func<ISearchContext, By, IWebElement, T> itemFactory)
+        public ElementsCollection(ISearchContext searchContext, ItemBy itemBy, Func<ISearchContext, By, IWebElement, T> itemFactory)
         {
             this.searchContext = searchContext;
             this.itemBy = itemBy;

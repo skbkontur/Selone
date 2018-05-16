@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 
 namespace Kontur.Selone.Controls
 {
-    public class WebElementsCollection : ItemsCollection<IWebElement>
+    public class WebElementsCollection : ElementsCollection<IWebElement>
     {
         public WebElementsCollection(ISearchContext searchContext, ItemByLambda itemByLambda)
             : base(searchContext, itemByLambda, CreateWebElementWrapper)

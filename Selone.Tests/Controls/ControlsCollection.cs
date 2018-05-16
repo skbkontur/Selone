@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 
 namespace Kontur.Selone.Tests.Controls
 {
-    public class ControlsCollection<T> : ItemsCollection<T>
+    public class ControlsCollection<T> : ElementsCollection<T>
     {
         public ControlsCollection(ISearchContext searchContext, ItemByLambda itemSelectorLambda)
             : base(searchContext, itemSelectorLambda, (sc, s, e) => (T) Activator.CreateInstance(typeof(T), sc, s))

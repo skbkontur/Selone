@@ -10,19 +10,29 @@ namespace Kontur.Selone.Extensions
             return (IJavaScriptExecutor) webDriver;
         }
 
-        public static void CloseRedundantWindows(this IWebDriver driver)
+        public static IWebDriver ResetWindows(this IWebDriver driver)
         {
-            if (driver.WindowHandles.Count > 1)
-            {
-                foreach (var handle in driver.WindowHandles.Skip(1))
-                {
-                    driver.SwitchTo().Window(handle).Close();
-                }
+            var windowHandle = driver.OpenWindow();
 
-                driver.SwitchTo().Window(driver.WindowHandles.Single());
+            foreach (var handle in driver.WindowHandles.Where(x => x != windowHandle))
+            {
+                driver.SwitchTo().Window(handle).Close();
             }
 
-            driver.Navigate().GoToUrl("about:blank");
+            return driver.SwitchTo().Window(windowHandle);
+        }
+
+        public static string OpenWindow(this IWebDriver driver)
+        {
+            var initialHandles = driver.WindowHandles;
+            driver.JavaScriptExecutor().ExecuteScript("window.open()");
+            return driver.WindowHandles.Except(initialHandles).Single();
+        }
+
+        public static IWebDriver SwitchToNewWindow(this IWebDriver driver)
+        {
+            var windowHandle = driver.OpenWindow();
+            return driver.SwitchTo().Window(windowHandle);
         }
 
         public static ITakesScreenshot Screenshoter(this IWebDriver webDriver)

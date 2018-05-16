@@ -19,12 +19,12 @@ namespace Kontur.Selone.Extensions
             return new WebElementWrapper(searchContext, byLambda);
         }
 
-        public static IItemsCollection<IWebElement> SearchElements(this ISearchContext searchContext, ItemBy itemBy)
+        public static IElementsCollection<IWebElement> SearchElements(this ISearchContext searchContext, ItemBy itemBy)
         {
             return new WebElementsCollection(searchContext, itemBy);
         }
 
-        public static IItemsCollection<IWebElement> SearchElements(this ISearchContext searchContext, ItemByLambda itemByLambda)
+        public static IElementsCollection<IWebElement> SearchElements(this ISearchContext searchContext, ItemByLambda itemByLambda)
         {
             return new WebElementsCollection(searchContext, itemByLambda);
         }
