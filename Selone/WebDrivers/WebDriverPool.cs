@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using Kontur.Selone.Extensions;
 using OpenQA.Selenium;
 
 namespace Kontur.Selone.WebDrivers
@@ -8,12 +7,14 @@ namespace Kontur.Selone.WebDrivers
     public class WebDriverPool : IWebDriverPool
     {
         private readonly IWebDriverFactory factory;
+        private readonly IWebDriverCleaner cleaner;
         private readonly ConcurrentQueue<IWebDriver> queue = new ConcurrentQueue<IWebDriver>();
         private readonly ConcurrentDictionary<IWebDriver, bool> acquired = new ConcurrentDictionary<IWebDriver, bool>();
 
-        public WebDriverPool(IWebDriverFactory factory)
+        public WebDriverPool(IWebDriverFactory factory, IWebDriverCleaner cleaner)
         {
             this.factory = factory;
+            this.cleaner = cleaner;
         }
 
         public IWebDriver Acquire()
@@ -53,7 +54,7 @@ namespace Kontur.Selone.WebDrivers
                 throw new Exception($"WebDriver {webDriver.GetType().Name} was not taken from the pool or already released");
             }
 
-            webDriver.ResetWindows();
+            cleaner?.Clear(webDriver);
             queue.Enqueue(webDriver);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using Kontur.Selone.Extensions;
 using Kontur.Selone.Tests.Browsers;
 using Kontur.Selone.WebDrivers;
 using NUnit.Framework;
@@ -10,7 +11,7 @@ namespace Kontur.Selone.Tests.Tests.WebDrivers
         [Test]
         public void Test()
         {
-            var webDriverPool = new WebDriverPool(BrowserPool.ChromeDriverFactory);
+            var webDriverPool = new WebDriverPool(BrowserPool.ChromeDriverFactory, new DelegateWebDriverCleaner(x => x.ResetWindows()));
             using (var pooled = webDriverPool.AcquireWrapper())
             {
                 var webDriver = pooled.WrappedDriver;

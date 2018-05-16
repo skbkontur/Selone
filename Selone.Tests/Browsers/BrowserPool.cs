@@ -1,4 +1,5 @@
-﻿using Kontur.Selone.Tests.Browsers.Factories;
+﻿using Kontur.Selone.Extensions;
+using Kontur.Selone.Tests.Browsers.Factories;
 using Kontur.Selone.WebDrivers;
 
 namespace Kontur.Selone.Tests.Browsers
@@ -17,9 +18,11 @@ namespace Kontur.Selone.Tests.Browsers
             DriverDirectoryPath = @"C:\browsers\IE"
         });
 
+        private static readonly DelegateWebDriverCleaner cleaner = new DelegateWebDriverCleaner(x => x.ResetWindows());
+
         public static readonly WebDriverPools<Browser> Instance =
             new WebDriverPools<Browser>()
-                .Register(Browser.Chrome, ChromeDriverFactory)
-                .Register(Browser.Ie, InternetExplorerDriverFactory);
+                .Register(Browser.Chrome, ChromeDriverFactory, cleaner)
+                .Register(Browser.Ie, InternetExplorerDriverFactory, cleaner);
     }
 }
