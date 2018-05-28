@@ -10,9 +10,9 @@ namespace Kontur.Selone.Selectors.Css
             return new CssBy(css);
         }
 
-        public static ItemBy FixedBy(this CssBy xPathBy, Func<CssBy, IWebElement, int, By> fix)
+        public static ItemBy FixedBy(this CssBy cssBy, Func<CssBy, IWebElement, int, By> fix)
         {
-            return new ItemBy(xPathBy, (e, i) => fix(xPathBy, e, i));
+            return new ItemBy(cssBy, (e, i) => fix(cssBy, e, i));
         }
 
         public static ItemBy FixedByAttribute(this CssBy cssBy, string name)
@@ -22,7 +22,7 @@ namespace Kontur.Selone.Selectors.Css
 
         public static ItemBy FixedByIndex(this CssBy cssBy)
         {
-            return cssBy.FixedBy((xpath, e, i) => xpath.WithIndex(i));
+            return cssBy.FixedBy((css, e, i) => css.WithIndex(i));
         }
     }
 }
