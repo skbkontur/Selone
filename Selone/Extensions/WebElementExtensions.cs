@@ -2,8 +2,8 @@
 using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Kontur.Selone.Controls;
-using Kontur.Selone.Controls.Properties;
+using Kontur.Selone.Elements;
+using Kontur.Selone.Properties;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Internal;

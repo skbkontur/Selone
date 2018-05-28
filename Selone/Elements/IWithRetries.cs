@@ -1,7 +1,7 @@
 ﻿using System;
 using OpenQA.Selenium;
 
-namespace Kontur.Selone.Controls
+namespace Kontur.Selone.Elements
 {
     public interface IWithRetries
     {

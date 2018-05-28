@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Kontur.Selone.Controls.Properties
+namespace Kontur.Selone.Properties
 {
     public class PropertyTransformationException : Exception
     {

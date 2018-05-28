@@ -3,7 +3,7 @@ using System.Linq;
 using Kontur.RetryableAssertions.Configuration;
 using Kontur.RetryableAssertions.Extensions;
 using Kontur.RetryableAssertions.ValueProviding;
-using Kontur.Selone.Controls.Properties;
+using Kontur.Selone.Properties;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using OpenQA.Selenium;

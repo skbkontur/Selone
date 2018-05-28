@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Kontur.Selone.Controls.Properties;
+using Kontur.Selone.Properties;
 
-namespace Kontur.Selone.Controls
+namespace Kontur.Selone.Elements
 {
     public interface IElementsCollection<out T> : IEnumerable<T>
     {

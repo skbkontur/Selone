@@ -1,5 +1,5 @@
 ﻿using System;
-using Kontur.Selone.Controls;
+using Kontur.Selone.Elements;
 using Kontur.Selone.Selectors;
 using Kontur.Selone.Selectors.Context;
 using OpenQA.Selenium;

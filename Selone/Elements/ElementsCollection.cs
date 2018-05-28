@@ -2,11 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Kontur.Selone.Controls.Properties;
+using Kontur.Selone.Properties;
 using Kontur.Selone.Selectors;
 using OpenQA.Selenium;
 
-namespace Kontur.Selone.Controls
+namespace Kontur.Selone.Elements
 {
     public class ElementsCollection<T> : IElementsCollection<T>
     {

@@ -1,4 +1,4 @@
-﻿namespace Kontur.Selone.Controls.Properties
+﻿namespace Kontur.Selone.Properties
 {
     public interface IControlProperty<out T>
     {

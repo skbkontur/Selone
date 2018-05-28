@@ -6,7 +6,7 @@ using Kontur.Selone.Selectors;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Internal;
 
-namespace Kontur.Selone.Controls
+namespace Kontur.Selone.Elements
 {
     public class WebElementWrapper : IWebElement, IWrapsElement, IWithRetries
     {

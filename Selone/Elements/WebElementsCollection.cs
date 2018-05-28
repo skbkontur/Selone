@@ -1,7 +1,7 @@
 ﻿using Kontur.Selone.Selectors;
 using OpenQA.Selenium;
 
-namespace Kontur.Selone.Controls
+namespace Kontur.Selone.Elements
 {
     public class WebElementsCollection : ElementsCollection<IWebElement>
     {
