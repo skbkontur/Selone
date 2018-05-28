@@ -82,79 +82,79 @@ namespace Kontur.Selone.Extensions
             webElement.Action((a, e) => a.DoubleClick(e));
         }
 
-        public static IControlProperty<bool> Present(this IWebElement webElement)
+        public static IProp<bool> Present(this IWebElement webElement)
         {
             return webElement.PropertyNoCheck(IsPresent, "IsPreset");
         }
 
-        public static IControlProperty<bool> Visible(this IWebElement webElement)
+        public static IProp<bool> Visible(this IWebElement webElement)
         {
             return webElement.PropertyNoCheck(IsVisible, "IsVisible");
         }
 
-        public static IControlProperty<bool> Displayed(this IWebElement webElement)
+        public static IProp<bool> Displayed(this IWebElement webElement)
         {
             return webElement.PropertyNoCheck(IsDisplayed, "IsDisplayed");
         }
 
-        public static IControlProperty<bool> Enabled(this IWebElement webElement)
+        public static IProp<bool> Enabled(this IWebElement webElement)
         {
             return webElement.Property(x => x.Enabled, "IsEnabled");
         }
 
-        public static IControlProperty<bool> Selected(this IWebElement webElement)
+        public static IProp<bool> Selected(this IWebElement webElement)
         {
             return webElement.Property(x => x.Selected, "IsSelected");
         }
 
-        public static IControlProperty<Point> Location(this IWebElement webElement)
+        public static IProp<Point> Location(this IWebElement webElement)
         {
             return webElement.Property(x => x.Location, "Location");
         }
 
-        public static IControlProperty<Size> Size(this IWebElement webElement)
+        public static IProp<Size> Size(this IWebElement webElement)
         {
             return webElement.Property(x => x.Size, "Size");
         }
 
-        public static IControlProperty<string> Text(this IWebElement webElement)
+        public static IProp<string> Text(this IWebElement webElement)
         {
             return webElement.Property(x => x.Text, "Text");
         }
 
-        public static IControlProperty<string[]> Classes(this IWebElement webElement)
+        public static IProp<string[]> Classes(this IWebElement webElement)
         {
             return webElement.Property(x => ExtractClasses(x.GetAttribute("class")), "Classes");
         }
 
-        public static IControlProperty<string> Value(this IWebElement webElement)
+        public static IProp<string> Value(this IWebElement webElement)
         {
             return webElement.Attribute("value");
         }
 
-        public static IControlProperty<string> TextContent(this IWebElement webElement)
+        public static IProp<string> TextContent(this IWebElement webElement)
         {
             return webElement.PropertyNoCheck(x => x.GetAttribute("textContent"), "TextContent");
         }
 
-        public static IControlProperty<string> Attribute(this IWebElement webElement, string attributeName)
+        public static IProp<string> Attribute(this IWebElement webElement, string attributeName)
         {
             return webElement.Property(x => x.GetAttribute(attributeName), $"[{attributeName}]");
         }
 
-        public static IControlProperty<string> AttributeNoCheck(this IWebElement webElement, string attributeName)
+        public static IProp<string> AttributeNoCheck(this IWebElement webElement, string attributeName)
         {
             return webElement.PropertyNoCheck(x => x.GetAttribute(attributeName), $"[{attributeName}]");
         }
 
-        public static IControlProperty<T> Property<T>(this IWebElement webElement, Func<IWebElement, T> getValue, string description)
+        public static IProp<T> Property<T>(this IWebElement webElement, Func<IWebElement, T> getValue, string description)
         {
-            return ControlProperty.Create(() => webElement.IsVisible() ? getValue(webElement) : throw new ElementNotVisibleException("not visible"), description);
+            return Prop.Create(() => webElement.IsVisible() ? getValue(webElement) : throw new ElementNotVisibleException("not visible"), description);
         }
 
-        public static IControlProperty<T> PropertyNoCheck<T>(this IWebElement webElement, Func<IWebElement, T> getValue, string description)
+        public static IProp<T> PropertyNoCheck<T>(this IWebElement webElement, Func<IWebElement, T> getValue, string description)
         {
-            return ControlProperty.Create(() => getValue(webElement), description);
+            return Prop.Create(() => getValue(webElement), description);
         }
 
         private static bool IsPresent(this IWebElement webElement)

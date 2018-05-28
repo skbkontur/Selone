@@ -44,7 +44,7 @@ namespace Kontur.Selone.Tests.Extensions
             return valueProvider.Assert(assertionDelegate, assertionConfiguration);
         }
 
-        public static IAssertionResult<T[], TSource> EqualTo<T, TSource>(this IValueProvider<IControlProperty<T>[], TSource> provider, T[] expected, string message = null, int? timeout = null)
+        public static IAssertionResult<T[], TSource> EqualTo<T, TSource>(this IValueProvider<IProp<T>[], TSource> provider, T[] expected, string message = null, int? timeout = null)
         {
             return provider.Transformed(x => x.Select(i => i.Get()).ToArray()).That(Is.EqualTo(expected), message, timeout);
         }

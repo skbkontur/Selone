@@ -1,6 +1,6 @@
 ﻿namespace Kontur.Selone.Properties
 {
-    public interface IPropertyTransformation<T>
+    public interface IPropTransformation<T>
     {
         T Deserialize(string value);
         string Serialize(T value);

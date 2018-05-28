@@ -1,6 +1,6 @@
 ﻿namespace Kontur.Selone.Properties
 {
-    public interface IControlProperty<out T>
+    public interface IProp<out T>
     {
         T Get();
         string GetDescription();

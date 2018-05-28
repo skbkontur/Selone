@@ -5,6 +5,6 @@ namespace Kontur.Selone.Elements
 {
     public interface IElementsCollection<out T> : IEnumerable<T>
     {
-        IControlProperty<int> Count { get; }
+        IProp<int> Count { get; }
     }
 }

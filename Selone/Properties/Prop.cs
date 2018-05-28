@@ -2,49 +2,49 @@
 
 namespace Kontur.Selone.Properties
 {
-    public static class ControlProperty
+    public static class Prop
     {
-        public static IControlProperty<T> Create<T>(Func<T> getValue, string description)
+        public static IProp<T> Create<T>(Func<T> getValue, string description)
         {
-            return new ControlPropertyImplementation<T>(getValue, description);
+            return new PropImplementation<T>(getValue, description);
         }
 
-        public static IControlProperty<TNew> Then<T, TNew>(this IControlProperty<T> property, IControlProperty<TNew> then)
+        public static IProp<TNew> Then<T, TNew>(this IProp<T> prop, IProp<TNew> then)
         {
-            return property.Transform(x => then.Get());
+            return prop.Transform(x => then.Get());
         }
 
-        public static IControlProperty<TNew> Then<T, TNew>(this IControlProperty<T> property, Func<IControlProperty<TNew>> then)
+        public static IProp<TNew> Then<T, TNew>(this IProp<T> prop, Func<IProp<TNew>> then)
         {
-            return property.Transform(x => then().Get());
+            return prop.Transform(x => then().Get());
         }
 
-        public static IControlProperty<TNew> Transform<T, TNew>(this IControlProperty<T> property, Func<T, TNew> transform)
+        public static IProp<TNew> Transform<T, TNew>(this IProp<T> prop, Func<T, TNew> transform)
         {
-            return new ControlPropertyImplementation<TNew>(() => transform(property.Get()), property.GetDescription());
+            return new PropImplementation<TNew>(() => transform(prop.Get()), prop.GetDescription());
         }
 
-        public static IControlPropertyWithTransformation<T> Transform<T>(this IControlProperty<string> raw, IPropertyTransformation<T> transformation)
+        public static IPropWithTransformation<T> Transform<T>(this IProp<string> raw, IPropTransformation<T> transformation)
         {
-            return new ControlPropertyWithTransformationImplementation<T>(raw, transformation);
+            return new PropWithTransformationImplementation<T>(raw, transformation);
         }
 
-        public static IControlProperty<T> Check<T>(this IControlProperty<T> property, Action<T> assertion)
+        public static IProp<T> Check<T>(this IProp<T> prop, Action<T> assertion)
         {
-            return new ControlPropertyImplementation<T>(() =>
+            return new PropImplementation<T>(() =>
             {
-                var value = property.Get();
+                var value = prop.Get();
                 assertion(value);
                 return value;
-            }, property.GetDescription());
+            }, prop.GetDescription());
         }
 
-        private class ControlPropertyImplementation<T> : IControlProperty<T>
+        private class PropImplementation<T> : IProp<T>
         {
             private readonly Func<T> getValue;
             private readonly string description;
 
-            public ControlPropertyImplementation(Func<T> getValue, string description)
+            public PropImplementation(Func<T> getValue, string description)
             {
                 this.getValue = getValue;
                 this.description = description;
@@ -61,16 +61,16 @@ namespace Kontur.Selone.Properties
             }
         }
 
-        private class ControlPropertyWithTransformationImplementation<T> : IControlPropertyWithTransformation<T>
+        private class PropWithTransformationImplementation<T> : IPropWithTransformation<T>
         {
-            public ControlPropertyWithTransformationImplementation(IControlProperty<string> raw, IPropertyTransformation<T> transformation)
+            public PropWithTransformationImplementation(IProp<string> raw, IPropTransformation<T> transformation)
             {
                 Raw = raw;
                 Transformation = transformation;
             }
 
-            public IControlProperty<string> Raw { get; }
-            public IPropertyTransformation<T> Transformation { get; }
+            public IProp<string> Raw { get; }
+            public IPropTransformation<T> Transformation { get; }
 
             public T Get()
             {

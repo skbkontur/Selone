@@ -24,10 +24,10 @@ namespace Kontur.Selone.Elements
             this.searchContext = searchContext;
             this.itemBy = itemBy;
             this.itemFactory = itemFactory;
-            Count = ControlProperty.Create(() => FindElements().Count, "count");
+            Count = Prop.Create(() => FindElements().Count, "count");
         }
 
-        public IControlProperty<int> Count { get; }
+        public IProp<int> Count { get; }
 
         public IEnumerator<T> GetEnumerator()
         {
