@@ -6,7 +6,7 @@
     <Product>Kontur.Selone</Product>
     <RootNamespace>Kontur.Selone</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>0.0.2.0$(VersionSuffix)</Version>
+    <Version>0.0.3.0$(VersionSuffix)</Version>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
     <LangVersion>latest</LangVersion>
     <TargetFramework>net45</TargetFramework>
