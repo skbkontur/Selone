@@ -33,7 +33,6 @@ namespace Kontur.Selone.Properties
             return (Prop1.Get(), Prop2.Get());
         }
     }
-    
 
     public class Props<T1, T2, T3>
     {
@@ -156,12 +155,12 @@ namespace Kontur.Selone.Properties
         {
             return new Props<T1>(prop1);
         }
-       
+
         public static Props<T1, T2> Create<T1, T2>(IProp<T1> prop1, IProp<T2> prop2)
         {
             return new Props<T1, T2>(prop1, prop2);
         }
-       
+
         public static Props<T1, T2, T3> Create<T1, T2, T3>(IProp<T1> prop1, IProp<T2> prop2, IProp<T3> prop3)
         {
             return new Props<T1, T2, T3>(prop1, prop2, prop3);
@@ -171,17 +170,17 @@ namespace Kontur.Selone.Properties
         {
             return new Props<T1, T2, T3, T4>(prop1, prop2, prop3, prop4);
         }
-        
+
         public static Props<T1, T2, T3, T4, T5> Create<T1, T2, T3, T4, T5>(IProp<T1> prop1, IProp<T2> prop2, IProp<T3> prop3, IProp<T4> prop4, IProp<T5> prop5)
         {
             return new Props<T1, T2, T3, T4, T5>(prop1, prop2, prop3, prop4, prop5);
         }
-        
+
         public static Props<T1, T2, T3, T4, T5, T6> Create<T1, T2, T3, T4, T5, T6>(IProp<T1> prop1, IProp<T2> prop2, IProp<T3> prop3, IProp<T4> prop4, IProp<T5> prop5, IProp<T6> prop6)
         {
             return new Props<T1, T2, T3, T4, T5, T6>(prop1, prop2, prop3, prop4, prop5, prop6);
         }
-       
+
         public static Props<T1, T2, T3, T4, T5, T6, T7> Create<T1, T2, T3, T4, T5, T6, T7>(IProp<T1> prop1, IProp<T2> prop2, IProp<T3> prop3, IProp<T4> prop4, IProp<T5> prop5, IProp<T6> prop6, IProp<T7> prop7)
         {
             return new Props<T1, T2, T3, T4, T5, T6, T7>(prop1, prop2, prop3, prop4, prop5, prop6, prop7);
