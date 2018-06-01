@@ -1,7 +1,7 @@
 ﻿using Kontur.Selone.Extensions;
 using OpenQA.Selenium;
 
-namespace Kontur.Selone.Helpers
+namespace Kontur.Selone.Tests.Helpers
 {
     public static class CustomJavaScriptExecutor
     {

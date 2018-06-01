@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Kontur.Selone.Helpers
+namespace Kontur.Selone.Tests.Helpers
 {
     public class ClientErrorsPresentException : Exception
     {
