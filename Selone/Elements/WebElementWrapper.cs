@@ -12,7 +12,7 @@ namespace Kontur.Selone.Elements
     {
         private readonly ISearchContext searchContext;
         private readonly By by;
-        private IWebElement wrappedElement;
+        private IWebElement cachedElement;
 
         public WebElementWrapper(ISearchContext searchContext, ByLambda byLambda, IWebElement webElement)
             : this(searchContext, byLambda(null), webElement)
@@ -27,7 +27,7 @@ namespace Kontur.Selone.Elements
         public WebElementWrapper(ISearchContext searchContext, By by, IWebElement webElement)
             : this(searchContext, by)
         {
-            wrappedElement = webElement;
+            cachedElement = webElement;
         }
 
         public WebElementWrapper(ISearchContext searchContext, By by)
@@ -44,7 +44,7 @@ namespace Kontur.Selone.Elements
         public Size Size => Execute(x => x.Size);
         public bool Displayed => Execute(x => x.Displayed);
 
-        public IWebElement WrappedElement => wrappedElement ?? (wrappedElement = searchContext.FindElement(by));
+        public IWebElement WrappedElement => searchContext.FindElement(by);
 
         public IWebElement FindElement(By by)
         {
@@ -106,25 +106,26 @@ namespace Kontur.Selone.Elements
             while (true)
             {
                 var hasAttemts = --attempts > 0;
+                cachedElement = cachedElement ?? searchContext.FindElement(by);
                 try
                 {
-                    return func(WrappedElement);
+                    return func(cachedElement);
                 }
                 catch (InvalidElementStateException) when (hasAttemts)
                 {
-                    ClearCache();
+                    InvalidateCachedElement();
                 }
                 catch (StaleElementReferenceException) when (hasAttemts)
                 {
-                    ClearCache();
+                    InvalidateCachedElement();
                 }
                 catch (InvalidOperationException exception) when (hasAttemts && IsElementIsNotClickableAtPointException(exception))
                 {
-                    ScrollToWrappedElement();
+                    ScrollToCachedElement();
                 }
                 catch (ElementNotVisibleException) when (hasAttemts)
                 {
-                    ScrollToWrappedElement();
+                    ScrollToCachedElement();
                 }
             }
         }
@@ -134,14 +135,14 @@ namespace Kontur.Selone.Elements
             return exception.Message.IndexOf("Element is not clickable at point", StringComparison.OrdinalIgnoreCase) != -1;
         }
 
-        private void ScrollToWrappedElement()
+        private void ScrollToCachedElement()
         {
-            WrappedElement.ScrollIntoView();
+            cachedElement.ScrollIntoView();
         }
 
-        private void ClearCache()
+        private void InvalidateCachedElement()
         {
-            wrappedElement = null;
+            cachedElement = null;
         }
     }
 }
