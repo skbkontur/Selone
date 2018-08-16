@@ -10,6 +10,9 @@
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
     <LangVersion>latest</LangVersion>
     <TargetFramework>net45</TargetFramework>
+    <PackageLicenseUrl>https://github.com/skbkontur/Selone/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/skbkontur/Selone</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/skbkontur/Selone</RepositoryUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\Build\Selone\</OutputPath>
