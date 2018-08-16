@@ -55,7 +55,7 @@ namespace Kontur.Selone.Selectors.Css
 
         public CssBy WithIndex(int index)
         {
-            return Css($":nth-child({index})");
+            return Css($":nth-child({index + 1})");
         }
 
         public CssBy WithAttribute(string name, string value)

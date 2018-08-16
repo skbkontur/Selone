@@ -44,7 +44,7 @@ namespace Kontur.Selone.Tests.Tests.Selectors.Css
         public void TestWithIndex()
         {
             var actual = new CssBy().WithIndex(123);
-            Assert.That(actual.Selector, Is.EqualTo(":nth-child(123)"));
+            Assert.That(actual.Selector, Is.EqualTo(":nth-child(124)"));
         }
 
         [Test]
