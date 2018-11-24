@@ -12,7 +12,7 @@ namespace Kontur.Selone.Tests.Extensions
 {
     public static class ValueProviderExtensions
     {
-        private const int DefaultTimeout = 20000;
+        private const int DefaultTimeout = 1000;
 
         public static AssertionConfiguration GetConfiguration(this int? timeout)
         {

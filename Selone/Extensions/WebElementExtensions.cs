@@ -163,7 +163,7 @@ namespace Kontur.Selone.Extensions
             {
                 return webElement.Execute(x => !string.IsNullOrEmpty(x.TagName));
             }
-            catch (NoSuchElementException)
+            catch (NoSuchElementException) //todo not InvalidSelectorException
             {
                 return false;
             }

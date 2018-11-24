@@ -23,6 +23,23 @@ namespace Kontur.Selone.Tests.Tests
         }
 
         [Test]
+        public void DisplayedOnAbsentElementThrowsFdsgsd()
+        {
+            var webDriver = Acquire(Browser.Chrome);
+            webDriver.OpenTestHtml("WebElementWrapper");
+            webDriver.FindElement(By.CssSelector("body"));
+
+            var absent = webDriver
+                         .SearchElement(By.CssSelector("html"))
+                         .SearchElement(By.CssSelector("body"))
+                         .SearchElement(By.CssSelector("[[absent"))
+                         .SearchElement(By.Id("xxx"))
+                         .SearchElement(By.ClassName("yyy"));
+            //absent.Visible().Wait().That(Is.EqualTo(true));
+            absent.Text.Wait().That(Is.EqualTo("xxx"), 1000);
+        }
+
+        [Test]
         public void SearchForAbsentElement_DoesNotThrow()
         {
             var webDriver = Acquire(Browser.Chrome);

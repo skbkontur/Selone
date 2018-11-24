@@ -100,13 +100,38 @@ namespace Kontur.Selone.Elements
             });
         }
 
+        public override string ToString()
+        {
+            return $"{searchContext}\n ↳ {by}";
+        }
+
         public T Execute<T>(Func<IWebElement, T> func)
         {
             var attempts = 5;
             while (true)
             {
                 var hasAttemts = --attempts > 0;
-                cachedElement = cachedElement ?? searchContext.FindElement(by);
+
+                try
+                {
+                    cachedElement = cachedElement ?? searchContext.FindElement(by);
+                }
+                catch (NotFoundException e)
+                {
+                    throw new ExtendedNoSuchElementException(ToString(), e);
+                    throw new ArgumentOutOfRangeException("sfs");
+                }
+                /*
+                catch (ExtendedNotFoundException e)
+                {
+                    throw new ExtendedNotFoundException(ToString(), e.Reason, e.InnerException);
+                }
+                catch (NotFoundException e)
+                {
+                    throw new ExtendedNotFoundException(ToString(), ToString(), e);
+                }
+                */
+
                 try
                 {
                     return func(cachedElement);
