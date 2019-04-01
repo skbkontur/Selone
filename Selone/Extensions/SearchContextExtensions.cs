@@ -49,9 +49,14 @@ namespace Kontur.Selone.Extensions
             return new ContextItemBy(searchContext, itemByLambda(null));
         }
 
+        public static IWebDriver WebDriver(this ISearchContext searchContext)
+        {
+            return searchContext as IWebDriver ?? (searchContext as IWrapsDriver)?.WrappedDriver ?? throw new Exception("SearchContext is not an IWebDriver and does not implement IWrapsDriver");
+        }
+
         public static ISearchContext Root(this ISearchContext searchContext)
         {
-            return searchContext as IWebDriver ?? (searchContext as IWrapsDriver)?.WrappedDriver ?? throw new Exception();
+            return searchContext.WebDriver();
         }
     }
 }

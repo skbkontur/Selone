@@ -4,11 +4,12 @@ using System.Drawing;
 using Kontur.Selone.Extensions;
 using Kontur.Selone.Selectors;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions.Internal;
 using OpenQA.Selenium.Internal;
 
 namespace Kontur.Selone.Elements
 {
-    public class WebElementWrapper : IWebElement, IWrapsElement, IWithRetries
+    public class WebElementWrapper : IWebElement, IWrapsElement, IWrapsDriver, ILocatable, ITakesScreenshot, IWithRetries
     {
         private readonly ISearchContext searchContext;
         private readonly By by;
@@ -44,6 +45,11 @@ namespace Kontur.Selone.Elements
         public Size Size => Execute(x => x.Size);
         public bool Displayed => Execute(x => x.Displayed);
 
+        public Point LocationOnScreenOnceScrolledIntoView => Execute(x => x.Locatable().LocationOnScreenOnceScrolledIntoView);
+        public ICoordinates Coordinates => Execute(x => x.Locatable().Coordinates);
+
+        public IWebDriver WrappedDriver => searchContext.WebDriver();
+
         public IWebElement WrappedElement => searchContext.FindElement(by);
 
         public IWebElement FindElement(By by)
@@ -54,6 +60,11 @@ namespace Kontur.Selone.Elements
         public ReadOnlyCollection<IWebElement> FindElements(By by)
         {
             return Execute(x => x.FindElements(by));
+        }
+
+        public Screenshot GetScreenshot()
+        {
+            return Execute(x => x.Screenshoter().GetScreenshot());
         }
 
         public void Clear()

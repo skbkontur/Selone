@@ -95,5 +95,14 @@ namespace Kontur.Selone.Tests.Tests
             createLazyElementButton.Click();
             Assert.That(lazyElement.Text, Is.EqualTo("I am nested lazy"));
         }
+
+        [Test]
+        public void SearchContextRootExtension()
+        {
+            var webDriver = Acquire(Browser.Chrome);
+            var absent = webDriver.SearchElement(By.Id("absent-x")).SearchElement(By.Id("absent-z"));
+            var root = absent.Root();
+            Assert.That(root, Is.SameAs(webDriver));
+        }
     }
 }
