@@ -19,9 +19,14 @@ namespace Kontur.Selone.Extensions
             return ((IWrapsDriver) webElement).WrappedDriver;
         }
 
-        public static ITakesScreenshot Screenshoter(this IWebElement webDriver)
+        public static ITakesScreenshot Screenshoter(this IWebElement webElement)
         {
-            return (ITakesScreenshot) webDriver;
+            return (ITakesScreenshot) webElement;
+        }
+
+        public static ILocatable Locatable(this IWebElement webElement)
+        {
+            return (ILocatable) webElement;
         }
 
         public static void Execute(this IWebElement webElement, Action<IWebElement> action)
