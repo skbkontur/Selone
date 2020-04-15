@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
     <AssemblyName>Kontur.Selone</AssemblyName>
     <Authors>Kontur</Authors>
     <Company>Kontur</Company>
     <Product>Kontur.Selone</Product>
     <RootNamespace>Kontur.Selone</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>0.0.5.0$(VersionSuffix)</Version>
-    <VersionSuffix>$(VersionSuffix)</VersionSuffix>
+    <VersionSuffix>alfa</VersionSuffix>
+    <Version>0.0.6-$(VersionSuffix)</Version>
     <LangVersion>latest</LangVersion>
-    <TargetFramework>net45</TargetFramework>
-    <PackageLicenseUrl>https://github.com/skbkontur/Selone/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicense>https://github.com/skbkontur/Selone/blob/master/LICENSE</PackageLicense>
     <PackageProjectUrl>https://github.com/skbkontur/Selone</PackageProjectUrl>
     <RepositoryUrl>https://github.com/skbkontur/Selone</RepositoryUrl>
   </PropertyGroup>
@@ -20,8 +20,10 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>..\Build\Selone\</OutputPath>
   </PropertyGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Selenium.WebDriver" Version="3.8.0" />
-    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>
 </Project>
