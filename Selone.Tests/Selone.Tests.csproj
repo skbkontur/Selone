@@ -19,7 +19,7 @@
     <ProjectReference Include="..\Selone\Selone.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Kontur.RetryableAssertions" Version="0.0.2-alfa" />
+    <PackageReference Include="Kontur.RetryableAssertions" Version="0.0.2-alpha" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
     <PackageReference Include="NUnit" Version="3.10.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
