@@ -17,7 +17,7 @@ test: off
 deploy:
   - provider: NuGet
     api_key:
-      secure: BGw4rds8WHDoDPSQg3yP5p1IWB9UR81jJKIQ7L85VniAMU+SVhvtUdRmyBAcjgAt
+      secure: qWjyfgbiWaHTfvV0asiDNtO4b9kyBjdJLXvC1zLysdLhJk4663phvjHXSQb7H4U8
     skip_symbols: true
     on:
       branch: /^master$/
