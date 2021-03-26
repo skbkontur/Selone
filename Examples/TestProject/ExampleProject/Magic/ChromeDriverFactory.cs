@@ -11,7 +11,7 @@ namespace Solutions.Magic
 {
     public class ChromeDriverFactory : IWebDriverFactory
     {
-        private static readonly string Path = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", ".."));
+        private static readonly string Path = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "Browser"));
 
         public IWebDriver Create()
         {
