@@ -1,5 +1,5 @@
 ﻿import * as React from "react";
-import {Button, Gapped, ButtonSize, ButtonType, ButtonUse} from "src/Common/Controls";
+import {Button, ButtonSize, ButtonType, ButtonUse, Gapped} from "src/Common/Controls";
 import ObjectHelper from "src/Common/TypeHelpers/ObjectHelper";
 
 const styles = require("./Filter.less");

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Paging, Gapped, Spinner, Center, Loader} from "src/Common/Controls";
+import {Center, Gapped, Loader, Paging, Spinner} from "src/Common/Controls";
 import PromiseHelper from "src/Common/TypeHelpers/PromiseHelper";
 import ObjectHelper from "src/Common/TypeHelpers/ObjectHelper";
 import CancellationToken from "src/Common/Cancellation/CancellationToken";

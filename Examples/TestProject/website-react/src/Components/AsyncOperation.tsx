@@ -1,9 +1,6 @@
 import * as React from "react";
-import {Gapped} from "src/Common/Controls";
-import Button from "retail-ui/components/Button/Button";
-import {ButtonUse} from "retail-ui/components/Button";
+import {Gapped, Button, ButtonUse, Spinner} from "src/Common/Controls";
 import PromiseHelper from "src/Common/TypeHelpers/PromiseHelper";
-import Spinner from "retail-ui/components/Spinner/Spinner";
 
 export interface AsyncOperationProps {
 }

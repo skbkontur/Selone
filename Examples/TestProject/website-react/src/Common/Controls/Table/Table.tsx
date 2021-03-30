@@ -1,7 +1,6 @@
 import * as React from "react";
 import ComponentHelper from "src/Common/ComponentHelper";
-import {Loader} from "src/Common/Controls";
-import {Kebab} from "src/Common/Controls";
+import {Kebab, Loader} from "src/Common/Controls";
 
 const styles = require("./Table.less");
 

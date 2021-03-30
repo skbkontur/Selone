@@ -1,11 +1,10 @@
-import {CSSProperties} from "react";
 import * as React from "react";
 
 export interface GappedProps {
     children: React.ReactNode;
     gap?: number;
     vertical?: boolean;
-    alignItems?: CSSProperties["alignItems"]
+    alignItems?: React.CSSProperties["alignItems"]
 }
 
 export default class Gapped extends React.Component<GappedProps> {

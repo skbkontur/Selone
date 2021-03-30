@@ -1,13 +1,9 @@
 import * as React from "react";
-import {Gapped, Checkbox, Input} from "src/Common/Controls";
-import Button from "retail-ui/components/Button/Button";
+import {Button, Checkbox, Gapped, IconNames, Input, Link, Modal} from "src/Common/Controls";
 import PromiseHelper from "src/Common/TypeHelpers/PromiseHelper";
 import {default as ContentWithFilterAndPaging, FilterResult} from "../Common/Controls/ContentWithFilterAndPaging/ContentWithFilterAndPaging";
 import Table from "../Common/Controls/Table/Table";
 import CurrencyLabel from "../Common/Controls/CurrencyLabel/CurrencyLabel";
-import Modal from "retail-ui/components/Modal/Modal";
-import IconNames from "retail-ui/components/Icon/IconNames";
-import Link from "retail-ui/components/Link/Link";
 
 export interface OrderListProps {
 }

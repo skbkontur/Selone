@@ -1,5 +1,5 @@
 ﻿import * as React from "react";
-import Input from "retail-ui/components/Input";
+import {Input} from "src/Common/Controls";
 
 export class CurrencyInputProps {
     placeholder?: string;
