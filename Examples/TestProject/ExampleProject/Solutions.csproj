@@ -73,12 +73,12 @@
     <Compile Include="Tests\Case3Parallel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="5.3.2" />
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="Kontur.RetryableAssertions" Version="0.0.1" />
-    <PackageReference Include="Kontur.Selone" Version="0.0.3" />
-    <PackageReference Include="NUnit" Version="3.10.1" />
-    <PackageReference Include="Selenium.WebDriver" Version="3.8.0" />
-    <PackageReference Include="System.ValueTuple" Version="4.4.0" />
+    <PackageReference Include="Kontur.Selone" Version="0.0.5" />
+    <PackageReference Include="NUnit" Version="3.13.1" />
+    <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
