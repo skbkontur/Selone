@@ -1,18 +1,17 @@
 {
-  "presets": [
-    "es2015",
-    "stage-0",
-    "react"
-  ],
   "plugins": [
+  ],
+  "presets": [
     [
-      "transform-runtime",
+      "@babel/preset-env",
       {
-        "helpers": false,
-        "polyfill": false,
-        "regenerator": true,
-        "moduleName": "babel-runtime"
+        "useBuiltIns": "entry",
+        "targets": {
+          "chrome": "58",
+          "ie": "11"
+        }
       }
-    ]
+    ],
+    "@babel/react"
   ]
 }

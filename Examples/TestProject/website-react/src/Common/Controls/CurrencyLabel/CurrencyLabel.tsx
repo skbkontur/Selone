@@ -1,6 +1,6 @@
 import * as React from "react";
 import {AccentColor, AccentColors, AccentColorType} from "src/Common/Colors";
-import CurrencyLabelInternal from "retail-ui/components/CurrencyLabel/CurrencyLabel";
+import CurrencyLabelInternal from "@skbkontur/react-ui/CurrencyLabel";
 
 export interface CurrencyLabelProps {
     value: number;
@@ -15,8 +15,8 @@ export interface CurrencyLabelProps {
 
 export default class CurrencyLabel extends React.Component<CurrencyLabelProps, {}> {
     render() {
-        const color = this.getColor(this.props.value) || this.props.color;
-        const style = color != null ? {color: AccentColors[color][AccentColorType.Text]} : {};
+        const accentColor = this.getColor(this.props.value) || this.props.color;
+        const style = accentColor != null ? {color: AccentColors[accentColor][AccentColorType.Text]} : {};
         return (
             <span style={style}>
                 {this.renderValue()}
@@ -42,7 +42,7 @@ export default class CurrencyLabel extends React.Component<CurrencyLabelProps, {
             );
         }
         return (
-            <CurrencyLabelInternal value={this.props.value} fractionDigits={this.props.fractionDigits}/>
+            <CurrencyLabelInternal value={this.props.value} fractionDigits={this.props.fractionDigits} currencySymbol={null}/>
         )
     };
 

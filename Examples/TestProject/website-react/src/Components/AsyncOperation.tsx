@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Gapped, Button, ButtonUse, Spinner} from "src/Common/Controls";
+import {Gapped, Button, Spinner} from "src/Common/Controls";
 import PromiseHelper from "src/Common/TypeHelpers/PromiseHelper";
 
 export interface AsyncOperationProps {
@@ -27,7 +27,7 @@ export default class AsyncOperation extends React.Component<AsyncOperationProps,
                     <Gapped>
                         <Button
                             data-tid="ExecuteButton"
-                            use={ButtonUse.Success}
+                            use={"success"}
                             disabled={this.state.operation != OperationState.None}
                             onClick={this.handleExecuteButtonClick}
                         >
@@ -35,7 +35,7 @@ export default class AsyncOperation extends React.Component<AsyncOperationProps,
                         </Button>
                         <Button
                             data-tid="ResetButton"
-                            use={ButtonUse.Danger}
+                            use={"danger"}
                             disabled={this.state.operation != OperationState.Done}
                             onClick={this.handleResetButtonClick}
                         >

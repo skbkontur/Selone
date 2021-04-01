@@ -3,7 +3,7 @@ import CancellationToken from "src/Common/Cancellation/CancellationToken";
 
 export default class PromiseHelper {
     static delay = (timeout: number): Promise<void> => {
-        return new Promise((resolve) => setTimeout(() => resolve(), timeout)) as Promise<any>;
+        return new Promise((resolve) => setTimeout(() => resolve(), timeout));
     };
 
     static resolveAfter = <T>(promise: Promise<T>, timeout: number): Promise<T> => {

@@ -23,7 +23,6 @@ export const GrayColors = {
 };
 
 export enum AccentColor {
-    None,
     Green,
     Red,
     Gray,

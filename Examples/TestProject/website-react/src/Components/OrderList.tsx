@@ -1,9 +1,10 @@
 import * as React from "react";
-import {Button, Checkbox, Gapped, IconNames, Input, Link, Modal} from "src/Common/Controls";
+import {Button, Checkbox, Gapped, Input, Link, Modal} from "src/Common/Controls";
 import PromiseHelper from "src/Common/TypeHelpers/PromiseHelper";
 import {default as ContentWithFilterAndPaging, FilterResult} from "../Common/Controls/ContentWithFilterAndPaging/ContentWithFilterAndPaging";
 import Table from "../Common/Controls/Table/Table";
 import CurrencyLabel from "../Common/Controls/CurrencyLabel/CurrencyLabel";
+import {Refresh, Trash} from "@skbkontur/react-icons";
 
 export interface OrderListProps {
 }
@@ -74,7 +75,7 @@ class OrderListFilter extends React.Component<OrderListFilterProps> {
                     >
                         Сбросить
                     </Button>
-                    <div style={{width: 2, height: "100%", background: "lightgrey"}}></div>
+                    <div style={{width: 2, height: "100%", background: "lightgrey"}}/>
                     <Button
                         data-tid={"SearchIvanButton"}
                         onClick={() => this.props.onChange({search: "Иван"})}
@@ -132,7 +133,7 @@ class OrderListTable extends React.Component<OrderListTableProps> {
                                 <Table.Td>
                                     <Link data-key={"ssdfsdf"}
                                           data-tid={"ReloadLink"}
-                                          icon={IconNames.Refresh as any}
+                                          icon={<Refresh/>}
                                           onClick={e => {
                                               e.stopPropagation();
                                               this.props.onReload(x.id);
@@ -142,7 +143,7 @@ class OrderListTable extends React.Component<OrderListTableProps> {
                                 <Table.Td>
                                     <Link
                                         data-tid={"RemoveLink"}
-                                        icon={IconNames.Trash as any}
+                                        icon={<Trash/>}
                                         onClick={e => {
                                             e.stopPropagation();
                                             this.props.onRemove(x.id);

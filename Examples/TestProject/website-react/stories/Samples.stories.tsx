@@ -3,9 +3,7 @@ import {storiesOf} from "@storybook/react";
 import NotificationSettings from "../src/Components/NotificationSettings";
 import AsyncOperation from "../src/Components/AsyncOperation";
 import OrderList from "../src/Components/OrderList";
-import Gapped from "../src/Common/Controls/Gapped/Gapped";
-import Tabs from "retail-ui/components/Tabs/Tabs";
-import Tab from "retail-ui/components/Tabs/Tab";
+import {Gapped, Tabs} from "../src/Common/Controls";
 
 type AppTab = "NotificationSettings" | "AsyncOperation" | "OrderList";
 
@@ -18,9 +16,9 @@ class App extends React.Component<AppProps> {
         return (
             <Gapped vertical>
                 <Tabs value={this.props.tab}>
-                    <Tab id={"NotificationSettings"} href={"/iframe.html?selectedKind=Samples&selectedStory=NotificationSettings"}>Уведомления</Tab>
-                    <Tab id={"AsyncOperation"} href={"/iframe.html?selectedKind=Samples&selectedStory=AsyncOperation"}>Операция</Tab>
-                    <Tab id={"OrderList"} href={"/iframe.html?selectedKind=Samples&selectedStory=OrderList"}>Заказы</Tab>
+                    <Tabs.Tab id={"NotificationSettings"} href={"/iframe.html?selectedKind=Samples&selectedStory=NotificationSettings"}>Уведомления</Tabs.Tab>
+                    <Tabs.Tab id={"AsyncOperation"} href={"/iframe.html?selectedKind=Samples&selectedStory=AsyncOperation"}>Операция</Tabs.Tab>
+                    <Tabs.Tab id={"OrderList"} href={"/iframe.html?selectedKind=Samples&selectedStory=OrderList"}>Заказы</Tabs.Tab>
                 </Tabs>
                 {this.props.tab === "NotificationSettings" && <NotificationSettings/>}
                 {this.props.tab === "AsyncOperation" && <AsyncOperation/>}

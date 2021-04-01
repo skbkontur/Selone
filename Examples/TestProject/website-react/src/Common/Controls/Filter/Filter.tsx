@@ -1,5 +1,5 @@
 ﻿import * as React from "react";
-import {Button, ButtonSize, ButtonType, ButtonUse, Gapped} from "src/Common/Controls";
+import {Button, Gapped} from "src/Common/Controls";
 import ObjectHelper from "src/Common/TypeHelpers/ObjectHelper";
 
 const styles = require("./Filter.less");
@@ -39,11 +39,10 @@ export default class Filter<T> extends React.Component<FilterProps<T>> {
                     <Gapped gap={10}>
                         {lines[0]}
                         <Button
-                            use={ButtonUse.Success}
+                            use={"success"}
                             data-tid="ApplyButton"
                             width={103}
-                            size={ButtonSize.Small}
-                            type={ButtonType.Button}
+                            size={"small"}
                             disabled={ObjectHelper.isEqual(this.props.currentFilterData, this.props.appliedFilterData)}
                             onClick={() => this.props.onChange(this.props.currentFilterData)}
                         >
@@ -54,9 +53,7 @@ export default class Filter<T> extends React.Component<FilterProps<T>> {
                             disabled={ObjectHelper.isEqual(this.props.initialFilterData, this.props.currentFilterData) && ObjectHelper.isEqual(this.props.initialFilterData, this.props.appliedFilterData)}
                             onClick={() => this.props.onChange(this.props.initialFilterData)}
                             width={94}
-                            size={ButtonSize.Small}
-                            type={ButtonType.Button}
-                            use={ButtonUse.Default}
+                            size={"small"}
                         >
                             Отменить
                         </Button>
