@@ -1,21 +1,82 @@
 # Selone
-## Что такое Selone
-Selone - это библиотека для быстрого запуска собственного набора тестов браузера или поискового робота.
+Selone is a kit with base infrastructure for quick start of your own set of browser tests or web crawler.
 
-Selone - это не еще одна оболочка Selenium.WebDriver. Selone не оборачивает, не скрывает и не сужает функциональность WebDriver и не запрещает его использование.
+Selone is not yet another Selenium.WebDriver wrapper. Selone does not wrap, does not hide or narrow WebDriver functionality and does not prohibit it from being used. 
 
-Selone не содержит в себе ассертов, но предоставляет возможность простого подключения сторонней библиотеки. Например, NUnit с `Assert.That` и `IResolveConstraint` или FluentAssertions с методом `Should()`.
+Selone is not about assertions but it provides abilitily for easy connect of third-party assertion library. For example NUnit with `Assert.That` and `IResolveConstraint` or FluentAssertions with `Should()` method.
 
-Selenium.WebDriver - это низкоуровневый API для веб-браузеров. Поэтому его прямое использование в вашем высокоуровневом коде может быть неудобным. Selone выглядит как расширение, которое обеспечивает стабильность и более удобный API для вашего высокоуровневого кода.
+Selenium.WebDriver - it is low-level API for web browsers. So its direct usage in your high-level code may be inconvenient.
 
-## Пример с тестами
-В директории `Examples\TestProject\ExampleProject` находится тестовый проект, написанный на C#. На нём демонстрируются основные возможности Селона. 
+Selone looks like extension that brings stability and more convenient API for your high-level code
 
-В [Ридми](Examples\TestProject\readme.md) проекта написано как его запустить.
+## Features
+### Search for absent element
+If element doesn't exist then native method `FindElement` will throw `ElementNotFoundException`
+```csharp
+var element = searchContext.FindElement(By.Id("absent-element-id")); //throws ElementNotFoundException
+```
+Alternative is to use `SearchElement`. It is the extension method for native `ISearchContext` that returns implementation of native `IWebElement`
+```csharp
+var element = searchContext.SearchElement(By.Id("absent-element-id"));
+//some actions
+element.Click();
+```
+Of course you can search nested elements inside absent elements
+```csharp
+var container = searchContext.SearchElement(By.Id("absent-container-id"));
+var element = container.SearchElement(By.Id("absent-element-id"));
+//some actions
+element.Click();
+```
+So, using `SearchElement` method you can pre-declare and initialize all necessary controls in one place
 
-## Как поставить 
-Подключить [Nuget пакет](https://www.nuget.org/packages/Kontur.Selone/0.0.6-alpha) в свой проект.
+### Automatic search of reattached element
+You can't work with reattached element which was found using `FindElement` method. If element was detached from DOM and then attached it becomes another element and you will get `StaleElementReferenceException` interacting with it.
+```csharp
+var element = searchContext.FindElement(By.Id("disappearing-element"));
+searchContext.FindElement(By.Id("remove-from-dom-button")).Click();
+searchContext.FindElement(By.Id("insert-into-dom-button")).Click();
+element.Click(); //throws StaleElementReferenceException
+```
+Alternative is to use `SearchElement` method. Element searched by `SearchElement` will handle `StaleElementReferenceException` itself and action with such element would be successfuly done.
+```csharp
+var element = searchContext.SearchElement(By.Id("disappearing-element"));
+searchContext.FindElement(By.Id("remove-from-dom-button")).Click();
+searchContext.FindElement(By.Id("insert-into-dom-button")).Click();
+element.Click(); //ok
+```
+### Ability to get element display and presence state
+Native `IsDisplayed` property throws exception for absent element and there is no `IsPresent` property.
+Selone provides three extension methods for `IWebElement` interface: `Displayed()`, `Visible()`, `Present()`. Of course it's better to use them with element searched by `SearchElement` but you can also use it with element received from `FindElement` method.
+```csharp
+var element = searchContext.SearchElement(By.Id("target"));
+var isDisplayed = element.Displayed().Get();
+var isVisible = element.Visible().Get();
+var isPresent = element.Present().Get();
+```
+### Extensible By selector
+Native `FindElement` method receives instance of `By` class as selector. There are built-in selectors can be created with static methods like `By.Id(...)` or `By.Css(...)` etc. One trouble - there is no way to add selectors same way, because all methods are static. So we need something non-static. `SearchElement` has overload that receives `ByLambda` delegate. This technique allows to add new selectors 
+```csharp
+public static class SelectorExtensions
+{
+  public static By WithCustomAttribute(this ByDummy dummy, string value)
+  {
+    return By.Css($"[data-x-custom='{value}']");
+  }
+}
 
-## Как писать тесты
+var element = searchContext.SearchElement(x => x.WithCustomAttribute("attr-value"));
+```
+It is also posible to create something fluent-like
+```csharp
+var element = searchContext.SearchElement(x => x.MyCustomSelector().MayBe().Fluent());
+```
 
-В документации [Быстрый старт](https://git.skbkontur.ru/slawwan/selone-docs/-/blob/master/QuickStart.md) есть раздел с основными шагами написания тестов. Там же есть пояснения некоторых возможностей Селона.
+### Simple but smart collection of elements
+Selone provides `SearchElements` method as alternative for `FindElements`
+It is lazy and it allows search for absent elements
+```csharp
+var elements = searchContext.SearchElements(x => x.......);
+```
+### ...
+...
