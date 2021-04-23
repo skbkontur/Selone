@@ -1,0 +1,76 @@
+@td-padding-top: 17px;
+
+:local {
+    .table {
+        position: relative;
+        border-collapse: collapse;
+        table-layout: fixed;
+        width: 100%;
+
+        .th{
+            color: #808080; //todo нужно втащить less переменные, использовать цвета оттуда
+            padding: 9px 0 8px 15px;
+            border-bottom: 1px solid #d9d9d9;
+            font-size: 13px;
+            font-weight: normal;
+            cursor: default;
+        }
+
+        .thKebab {
+            .th;
+            width: 50px;
+        }
+
+        .tr{
+            vertical-align: top;
+
+            &.loading,
+            &.changed {
+                font-weight: 600;
+            }
+
+            &.clickable {
+                cursor: pointer;
+            }
+
+            &.selected.selected .td {
+                background-color: #E4F3FF;
+            }
+
+            &:hover .td {
+                background-color: #FCFCFC;
+            }
+
+            .td{
+                padding: @td-padding-top 0 18px 15px;
+                border-bottom: 1px solid #ebebeb;
+                font-size: 16px;
+                color: #333;
+
+                .loader {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    margin-top: -@td-padding-top;
+                    background-color: rgba(255, 255, 255, 0.3);
+                    font-weight: normal; //todo наверное это должно задаваться в лоадере или спинере
+                }
+
+                .kebab {
+                    margin-top: -2px;
+                    margin-bottom: -4px;
+                    vertical-align: middle;
+                    text-align: center;
+                }
+            }
+        }
+
+        .textAlignLeft {
+            text-align: left;
+        }
+
+        .textAlignRight {
+            text-align: right;
+        }
+    }
+}
