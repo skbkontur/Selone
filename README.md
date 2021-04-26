@@ -9,9 +9,9 @@ Selone не содержит в себе ассертов, но предоста
 Selenium.WebDriver — это низкоуровневый API для веб-браузеров. Поэтому его прямое использование в вашем высокоуровневом коде может быть неудобным. Selone выглядит как расширение, которое обеспечивает стабильность и более удобный API для вашего высокоуровневого кода.
 
 ## Пример работы с Selone
-В директории `Examples\TestProject\ExampleProject` находится [тестовый проект](Examples\TestProject\ExampleProject), написанный на C#. В нём демонстрируются основные возможности Селона. 
+В директории `Examples/TestProject/ExampleProject` находится [тестовый проект](Examples/TestProject/ExampleProject), написанный на C#. В нём демонстрируются основные возможности Селона. 
 
-В [Ридми](Examples\TestProject\readme.md) проекта написано как его запустить.
+В [Ридми](Examples/TestProject/readme.md) проекта написано как его запустить.
 
 ## Как поставить 
 Подключить [Nuget пакет](https://www.nuget.org/packages/Kontur.Selone/0.0.6-alpha) в свой проект.
