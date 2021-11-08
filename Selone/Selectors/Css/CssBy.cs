@@ -15,12 +15,12 @@ namespace Kontur.Selone.Selectors.Css
 
         public override IWebElement FindElement(ISearchContext context)
         {
-            return ((IFindsByCssSelector) context).FindElementByCssSelector(Selector);
+            return ((IFindsElement) context).FindElement("css selector", Selector);
         }
 
         public override ReadOnlyCollection<IWebElement> FindElements(ISearchContext context)
         {
-            return ((IFindsByCssSelector) context).FindElementsByCssSelector(Selector);
+            return ((IFindsElement) context).FindElements("css selector",Selector);
         }
 
         public CssBy Css(string tail)

@@ -15,12 +15,12 @@ namespace Kontur.Selone.Selectors.XPath
 
         public override IWebElement FindElement(ISearchContext context)
         {
-            return ((IFindsByXPath) context).FindElementByXPath(Selector);
+            return ((IFindsElement) context).FindElement("xpath", Selector);
         }
 
         public override ReadOnlyCollection<IWebElement> FindElements(ISearchContext context)
         {
-            return ((IFindsByXPath) context).FindElementsByXPath(Selector);
+            return ((IFindsElement) context).FindElements("xpath", Selector);
         }
 
         public new XPathBy XPath(string tail)

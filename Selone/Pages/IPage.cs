@@ -1,4 +1,4 @@
-﻿using OpenQA.Selenium.Internal;
+﻿using OpenQA.Selenium;
 
 namespace Kontur.Selone.Pages
 {
