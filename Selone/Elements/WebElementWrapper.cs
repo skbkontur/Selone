@@ -5,7 +5,6 @@ using Kontur.Selone.Extensions;
 using Kontur.Selone.Selectors;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions.Internal;
-using OpenQA.Selenium.Internal;
 
 namespace Kontur.Selone.Elements
 {
@@ -67,6 +66,11 @@ namespace Kontur.Selone.Elements
             return Execute(x => x.Screenshoter().GetScreenshot());
         }
 
+        public ISearchContext GetShadowRoot()
+        {
+            return Execute(x => x.GetShadowRoot());
+        }
+
         public void Clear()
         {
             Execute(x => x.Clear());
@@ -92,11 +96,22 @@ namespace Kontur.Selone.Elements
             return Execute(x => x.GetAttribute(attributeName));
         }
 
+        public string GetDomAttribute(string attributeName)
+        {
+            return Execute(x => x.GetDomAttribute(attributeName));
+        }
+
+        public string GetDomProperty(string propertyName)
+        {
+            return Execute(x => x.GetDomProperty(propertyName));
+        }
+
         public string GetCssValue(string propertyName)
         {
             return Execute(x => x.GetCssValue(propertyName));
         }
 
+        [Obsolete("Use the GetDomProperty method instead")]
         public string GetProperty(string propertyName)
         {
             return Execute(x => x.GetProperty(propertyName));
@@ -117,7 +132,7 @@ namespace Kontur.Selone.Elements
             while (true)
             {
                 var hasAttemts = --attempts > 0;
-                cachedElement = cachedElement ?? searchContext.FindElement(by);
+                cachedElement ??= searchContext.FindElement(by);
                 try
                 {
                     return func(cachedElement);

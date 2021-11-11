@@ -1,5 +1,5 @@
 ﻿using System;
-using OpenQA.Selenium.Internal;
+using OpenQA.Selenium;
 
 namespace Kontur.Selone.WebDrivers
 {
