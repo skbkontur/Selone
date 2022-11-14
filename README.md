@@ -14,7 +14,7 @@ Selone не содержит в себе ассертов, но предоста
 В [readme](Examples/TestProject/readme.md) проекта написано как его запустить.
 
 ## Как поставить 
-Подключить [Nuget пакет](https://www.nuget.org/packages/Kontur.Selone/0.0.6-alpha) в свой проект.
+Подключить [Nuget пакет](https://www.nuget.org/packages/Kontur.Selone) в свой проект.
 
 ## Как писать тесты
 В заметке [Быстрый старт](docs/QuickStart.md) описаны основные шаги, необходимые при написании тестов. Там же есть пояснения некоторых возможностей Селона.
