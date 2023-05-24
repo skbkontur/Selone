@@ -55,7 +55,11 @@ namespace Kontur.Selone.WebDrivers
             }
 
             cleaner?.Clear(webDriver);
-            queue.Enqueue(webDriver);
+
+            if (((IHasSessionId)webDriver).SessionId != null)
+            {
+                queue.Enqueue(webDriver);
+            }
         }
     }
 }
