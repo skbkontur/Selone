@@ -8,9 +8,7 @@ namespace Kontur.Selone.Tests.Browsers
     {
         public static readonly ChromeDriverFactory ChromeDriverFactory = new ChromeDriverFactory(new ChromeDriverFactoryConfiguration
         {
-            ChromeDirectoryPath = @"C:\browsers\Chrome",
-            DriverDirectoryPath = @"C:\browsers\Chrome",
-            WindowSize = new WindowSize {Width = 800, Height = 600}
+            WindowSize = new WindowSize {Width = 1024, Height = 768}
         });
 
         public static readonly InternetExplorerDriverFactory InternetExplorerDriverFactory = new InternetExplorerDriverFactory(new InternetExplorerDriverFactoryConfiguration
