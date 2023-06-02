@@ -7,7 +7,7 @@
     <Product>Kontur.Selone</Product>
     <RootNamespace>Kontur.Selone</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <LangVersion>latest</LangVersion>
     <PackageLicense>https://github.com/skbkontur/Selone/blob/master/LICENSE</PackageLicense>
     <PackageProjectUrl>https://github.com/skbkontur/Selone</PackageProjectUrl>
