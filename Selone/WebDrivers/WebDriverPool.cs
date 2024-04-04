@@ -8,13 +8,19 @@ namespace Kontur.Selone.WebDrivers
     {
         private readonly IWebDriverFactory factory;
         private readonly IWebDriverCleaner cleaner;
+        private readonly IWebDriverDisposer driverDisposer;
         private readonly ConcurrentQueue<IWebDriver> queue = new ConcurrentQueue<IWebDriver>();
         private readonly ConcurrentDictionary<IWebDriver, bool> acquired = new ConcurrentDictionary<IWebDriver, bool>();
 
-        public WebDriverPool(IWebDriverFactory factory, IWebDriverCleaner cleaner)
+        public WebDriverPool(
+            IWebDriverFactory factory,
+            IWebDriverCleaner cleaner,
+            IWebDriverDisposer driverDisposer
+        )
         {
             this.factory = factory;
             this.cleaner = cleaner;
+            this.driverDisposer = driverDisposer;
         }
 
         public IWebDriver Acquire()
@@ -36,7 +42,7 @@ namespace Kontur.Selone.WebDrivers
         {
             while (queue.TryDequeue(out var webDriver))
             {
-                webDriver.Dispose();
+                driverDisposer.Dispose(webDriver);
             }
         }
 
@@ -51,12 +57,13 @@ namespace Kontur.Selone.WebDrivers
         {
             if (!acquired.TryRemove(webDriver, out var dummy))
             {
-                throw new Exception($"WebDriver {webDriver.GetType().Name} was not taken from the pool or already released");
+                throw new Exception(
+                    $"WebDriver {webDriver.GetType().Name} was not taken from the pool or already released");
             }
 
             cleaner?.Clear(webDriver);
 
-            if (((IHasSessionId)webDriver).SessionId != null)
+            if (((IHasSessionId) webDriver).SessionId != null)
             {
                 queue.Enqueue(webDriver);
             }
