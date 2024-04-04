@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
     <AssemblyName>Kontur.Selone.Tests</AssemblyName>
     <Authors>Kontur</Authors>
     <Company>Kontur</Company>
@@ -8,6 +7,7 @@
     <RootNamespace>Kontur.Selone.Tests</RootNamespace>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <LangVersion>latest</LangVersion>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\Build\Selone.Tests\</OutputPath>
@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Kontur.RetryableAssertions" Version="0.0.2-alpha" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0" />
     <PackageReference Include="NUnit" Version="3.10.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />

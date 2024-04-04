@@ -9,9 +9,9 @@ namespace Kontur.Selone.WebDrivers
         private readonly ConcurrentDictionary<TKey, IWebDriverPool> pools = new ConcurrentDictionary<TKey, IWebDriverPool>();
         private readonly ConcurrentDictionary<IWebDriver, TKey> acquired = new ConcurrentDictionary<IWebDriver, TKey>();
 
-        public IWebDriverKeyedPool<TKey> Register(TKey key, IWebDriverFactory factory, IWebDriverCleaner cleaner)
+        public IWebDriverKeyedPool<TKey> Register(TKey key, IWebDriverFactory factory, IWebDriverCleaner cleaner, IWebDriverDisposer disposer)
         {
-            if (!pools.TryAdd(key, new WebDriverPool(factory, cleaner)))
+            if (!pools.TryAdd(key, new WebDriverPool(factory, cleaner, disposer)))
             {
                 throw new Exception($"WebDriverFactory for key '{key}' already registered");
             }
