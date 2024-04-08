@@ -8,14 +8,9 @@ on:
 
 jobs:
   test:
-
     runs-on: windows-2019
-
     steps:
-
     - uses: browser-actions/setup-chrome@v1
-    - run: chrome --version
-
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
