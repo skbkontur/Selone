@@ -1,0 +1,52 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  [push]
+
+jobs:
+  test:
+    runs-on: windows-2019
+    steps:
+    - uses: browser-actions/setup-chrome@v1
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test Selone.Tests\Selone.Tests.csproj --no-build --verbosity normal
+
+  publish:
+    runs-on: windows-2019
+    needs: test
+    if: github.ref_type == 'tag'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Pack dotnet
+        run: dotnet pack --configuration Release
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          path: "**/*.nupkg"
+          if-no-files-found: error
+      - name: Publish NuGet
+        run: dotnet nuget push "**/*.nupkg" --source https://api.nuget.org/v3/index.json --no-symbols --api-key $env:NUGET_API_KEY
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+
+
