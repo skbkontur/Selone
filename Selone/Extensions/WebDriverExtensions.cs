@@ -12,14 +12,15 @@ namespace Kontur.Selone.Extensions
 
         public static IWebDriver ResetWindows(this IWebDriver driver)
         {
-            var windowHandle = driver.OpenWindow();
-
-            foreach (var handle in driver.WindowHandles.Where(x => x != windowHandle))
+            var current = driver.CurrentWindowHandle;
+            foreach (var handle in driver.WindowHandles.Where(x => x != current))
             {
                 driver.SwitchTo().Window(handle).Close();
             }
 
-            return driver.SwitchTo().Window(windowHandle);
+            driver.SwitchTo().Window(current);
+            driver.Navigate().GoToUrl("about:blank");
+            return driver;
         }
 
         public static string OpenWindow(this IWebDriver driver)
