@@ -42,7 +42,7 @@ namespace Kontur.Selone.Elements
             }
             catch (NoSuchElementException)
             {
-                return new IWebElement[0];
+                return Array.Empty<IWebElement>();
             }
         }
 

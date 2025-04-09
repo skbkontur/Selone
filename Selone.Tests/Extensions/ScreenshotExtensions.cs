@@ -23,7 +23,7 @@ namespace Kontur.Selone.Tests.Extensions
             var screenshotPath = Path.Combine(dir, filename);
             try
             {
-                screenshot.SaveAsFile(screenshotPath, ScreenshotImageFormat.Png);
+                screenshot.SaveAsFile(screenshotPath);
                 Console.WriteLine($"Screenshot saved to '{screenshotPath}'");
                 if (TeamcityHelper.IsTeamCity())
                 {

@@ -111,12 +111,6 @@ namespace Kontur.Selone.Elements
             return Execute(x => x.GetCssValue(propertyName));
         }
 
-        [Obsolete("Use the GetDomProperty method instead")]
-        public string GetProperty(string propertyName)
-        {
-            return Execute(x => x.GetProperty(propertyName));
-        }
-
         public void Execute(Action<IWebElement> action)
         {
             Execute(x =>
@@ -131,25 +125,25 @@ namespace Kontur.Selone.Elements
             var attempts = 5;
             while (true)
             {
-                var hasAttemts = --attempts > 0;
+                var hasAttempts = --attempts > 0;
                 cachedElement ??= searchContext.FindElement(by);
                 try
                 {
                     return func(cachedElement);
                 }
-                catch (InvalidElementStateException) when (hasAttemts)
+                catch (InvalidElementStateException) when (hasAttempts)
                 {
                     InvalidateCachedElement();
                 }
-                catch (StaleElementReferenceException) when (hasAttemts)
+                catch (StaleElementReferenceException) when (hasAttempts)
                 {
                     InvalidateCachedElement();
                 }
-                catch (InvalidOperationException exception) when (hasAttemts && IsElementIsNotClickableAtPointException(exception))
+                catch (InvalidOperationException exception) when (hasAttempts && IsElementIsNotClickableAtPointException(exception))
                 {
                     ScrollToCachedElement();
                 }
-                catch (ElementNotVisibleException) when (hasAttemts)
+                catch (ElementNotInteractableException) when (hasAttempts)
                 {
                     ScrollToCachedElement();
                 }
