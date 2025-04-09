@@ -11,9 +11,9 @@ jobs:
     runs-on: windows-2019
     steps:
     - uses: browser-actions/setup-chrome@v1
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
@@ -28,9 +28,9 @@ jobs:
     needs: test
     if: github.ref_type == 'tag'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
       - name: Restore dependencies
@@ -40,7 +40,7 @@ jobs:
       - name: Pack dotnet
         run: dotnet pack --configuration Release
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           path: "**/*.nupkg"
           if-no-files-found: error
