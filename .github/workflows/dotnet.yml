@@ -34,11 +34,11 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore Selone\Selone.csproj
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build Selone\Selone.csproj --no-restore
       - name: Pack dotnet
-        run: dotnet pack --configuration Release
+        run: dotnet pack Selone\Selone.csproj --configuration Release
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
