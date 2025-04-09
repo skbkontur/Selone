@@ -6,7 +6,6 @@ using Kontur.Selone.Elements;
 using Kontur.Selone.Properties;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Internal;
 
 namespace Kontur.Selone.Extensions
 {
@@ -89,7 +88,7 @@ namespace Kontur.Selone.Extensions
 
         public static IProp<bool> Present(this IWebElement webElement)
         {
-            return webElement.PropertyNoCheck(IsPresent, "IsPreset");
+            return webElement.PropertyNoCheck(IsPresent, "IsPresent");
         }
 
         public static IProp<bool> Visible(this IWebElement webElement)
@@ -154,7 +153,7 @@ namespace Kontur.Selone.Extensions
 
         public static IProp<T> Property<T>(this IWebElement webElement, Func<IWebElement, T> getValue, string description)
         {
-            return Prop.Create(() => webElement.IsVisible() ? getValue(webElement) : throw new ElementNotVisibleException("not visible"), description);
+            return Prop.Create(() => webElement.IsVisible() ? getValue(webElement) : throw new ElementNotInteractableException("not visible"), description);
         }
 
         public static IProp<T> PropertyNoCheck<T>(this IWebElement webElement, Func<IWebElement, T> getValue, string description)
@@ -178,13 +177,13 @@ namespace Kontur.Selone.Extensions
         {
             try
             {
-                return webElement.Execute(x => x.Displayed && x.Size.Height > 0 && x.Size.Width > 0 ? true : throw new ElementNotVisibleException());
+                return webElement.Execute(x => x.Displayed && x.Size.Height > 0 && x.Size.Width > 0 ? true : throw new ElementNotInteractableException());
             }
             catch (NoSuchElementException)
             {
                 return false;
             }
-            catch (ElementNotVisibleException)
+            catch (ElementNotInteractableException)
             {
                 return false;
             }

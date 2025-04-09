@@ -3,7 +3,6 @@ using Kontur.Selone.Elements;
 using Kontur.Selone.Selectors;
 using Kontur.Selone.Selectors.Context;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Internal;
 
 namespace Kontur.Selone.Extensions
 {

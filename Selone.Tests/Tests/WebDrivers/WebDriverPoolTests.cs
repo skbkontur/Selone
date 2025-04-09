@@ -20,7 +20,7 @@ namespace Kontur.Selone.Tests.Tests.WebDrivers
             using (var pooled = webDriverPool.AcquireWrapper())
             {
                 var webDriver = pooled.WrappedDriver;
-                webDriver.Navigate().GoToUrl("http://google.com");
+                webDriver.Navigate().GoToUrl("https://google.com");
                 Thread.Sleep(1000);
             }
 
@@ -29,7 +29,7 @@ namespace Kontur.Selone.Tests.Tests.WebDrivers
             {
                 var webDriver = pooled.WrappedDriver;
                 Assert.That(webDriver.Url, Is.EqualTo("about:blank"));
-                webDriver.Navigate().GoToUrl("http://google.com");
+                webDriver.Navigate().GoToUrl("https://google.com");
                 Thread.Sleep(1000);
             }
 
@@ -83,14 +83,14 @@ namespace Kontur.Selone.Tests.Tests.WebDrivers
             var firstUsingDrivers = new[] {driverPool.Acquire(), driverPool.Acquire()};
             foreach (var driver in firstUsingDrivers)
             {
-                driver.Navigate().GoToUrl("https://kontur.ru");
+                driver.Navigate().GoToUrl("https://ya.ru");
                 driverPool.Release(driver);
             }
 
             var secondUsingDrivers = new[] {driverPool.Acquire(), driverPool.Acquire()};
             foreach (var driver in secondUsingDrivers)
             {
-                driver.Navigate().GoToUrl("https://kontur.ru/press/news");
+                driver.Navigate().GoToUrl("https://ya.ru/pogoda");
                 driverPool.Release(driver);
             }
 
