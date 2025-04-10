@@ -7,7 +7,7 @@
     <RootNamespace>Kontur.Selone.Tests</RootNamespace>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <LangVersion>latest</LangVersion>
-    <TargetFrameworks>net462;net6.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\Build\Selone.Tests\</OutputPath>
@@ -17,9 +17,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Selone\Selone.csproj" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net462'">
-    <PackageReference Include="System.ValueTuple" Version="4.6.1" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Kontur.RetryableAssertions" Version="1.0.0" />
