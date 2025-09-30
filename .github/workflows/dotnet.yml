@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: windows-2019
+    runs-on: windows-latest
     steps:
     - uses: browser-actions/setup-chrome@v1
     - uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
       run: dotnet test Selone.Tests\Selone.Tests.csproj --no-build --verbosity normal
 
   publish:
-    runs-on: windows-2019
+    runs-on: windows-latest
     needs: test
     if: github.ref_type == 'tag'
     steps:

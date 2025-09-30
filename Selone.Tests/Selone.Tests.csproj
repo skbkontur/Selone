@@ -7,7 +7,7 @@
     <RootNamespace>Kontur.Selone.Tests</RootNamespace>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <LangVersion>latest</LangVersion>
-    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\Build\Selone.Tests\</OutputPath>
