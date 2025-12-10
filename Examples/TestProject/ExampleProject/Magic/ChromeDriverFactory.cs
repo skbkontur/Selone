@@ -1,9 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using Kontur.Selone.Extensions;
-using Kontur.Selone.WebDrivers;
-using Microsoft.Win32;
+﻿using Kontur.Selone.WebDrivers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -11,31 +6,23 @@ namespace Solutions.Magic
 {
     public class ChromeDriverFactory : IWebDriverFactory
     {
-        private static readonly string Path = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "Browser"));
-
         public IWebDriver Create()
         {
-
-            for (var i = 0; i < 3; i++)
-            {
-                try
-                {
-                    var chromeDriverService = CreateChromeDriverService();
-                    var chromeDriver = new ChromeDriver(chromeDriverService);
-                    return chromeDriver;
-                    
-                }
-                catch (InvalidOperationException e) when (e.Message.Contains("session not created exception"))
-                {
-                }
-            }
-
-            return null;
+            var chromeDriverService = CreateChromeDriverService();
+            var options = CreateChromeOptions();
+            var chromeDriver = new ChromeDriver(chromeDriverService, options);
+            return chromeDriver;
         }
-        
+
+        private static ChromeOptions CreateChromeOptions()
+        {
+            var options = new ChromeOptions();
+            return options;
+        }
+
         private ChromeDriverService CreateChromeDriverService()
         {
-            return ChromeDriverService.CreateDefaultService(Path);
+            return ChromeDriverService.CreateDefaultService();
         }
     }
 }
