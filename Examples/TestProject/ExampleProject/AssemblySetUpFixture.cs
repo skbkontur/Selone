@@ -18,7 +18,12 @@ namespace Solutions
         {
             var factory = new ChromeDriverFactory();
             var cleaner = new DelegateWebDriverCleaner(x => x.ResetWindows());
-            WebDriverPool = new WebDriverPool(factory, cleaner);
+            var disposer = new WebDriverDisposer(x =>
+            {
+                x.Close();
+                x.Quit();
+            });
+            WebDriverPool = new WebDriverPool(factory, cleaner, disposer);
         }
 
         [OneTimeTearDown]
