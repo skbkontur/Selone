@@ -10,7 +10,11 @@ namespace Solutions.Application
     {
         public OrderTable(ISearchContext searchContext, By by) : base(searchContext, by)
         {
-            Items = new ElementsCollection<OrderRow>(Container, x => x.WithTid("Order").FixedByKey(), (sc, selector, we) => new OrderRow(sc, selector));
+            Items = new ElementsCollection<OrderRow>(
+                Container,
+                x => x.WithTid("Order").FixedByKey(),
+                (sc, selector, we) => new OrderRow(sc, selector)
+            );
         }
 
         public IElementsCollection<OrderRow> Items { get; }

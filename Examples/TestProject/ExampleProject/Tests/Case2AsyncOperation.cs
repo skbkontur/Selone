@@ -1,28 +1,23 @@
-﻿using Kontur.Selone.Extensions;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using Solutions.Application;
 using Solutions.Magic;
 
 namespace Solutions.Tests
 {
-    public class Case2AsyncOperation
+    public class Case2AsyncOperation : TestBase
     {
         [Test]
         public void WithSearch()
         {
-            var webDriver = new ChromeDriverFactory().Create();
-            webDriver.Navigate().GoToUrl(Urls.AsyncOperation);
-
-            // поиск кнопки запуска и тэга с результатом
-            var executeButton = webDriver.SearchElement(x => x.WithTid("ExecuteButton"));
-            var result = webDriver.SearchElement(x => x.WithTid("Result"));
+            var page = Navigation.GoToPage<AsyncOperationPage>(GetWebDriver(), Urls.AsyncOperation);
 
             // проверка видимости кнопки
-            Assert.That(executeButton.Displayed, Is.True);
+            Assert.That(page.ExecuteButton.Visible.Get(), Is.True);
             // проверка отсутствия результата
-            Assert.That(result.Present().Get, Is.False);
+            Assert.That(page.Result.Present.Get, Is.False);
 
             // запуск асинхронной операции
-            executeButton.Click();
+            page.ExecuteButton.Click();
 
             // ожидание результата операции:
 
@@ -34,13 +29,11 @@ namespace Solutions.Tests
             // Assert.That(result.Text, Is.EqualTo("Успешно выполнено"));
 
             // 3. проверка текста с использованием RetryableAssertions
-            result.Text().Wait().That(Is.EqualTo("Успешно выполнено"));
+            page.Result.Text.Wait().That(Is.EqualTo("Успешно выполнено"));
 
             // преимущества:
             // 1. ожидание значения на еще отсутствующем элементе
             // 2. доступно все множество проверок NUnit или другого подключенного фреймворка проверок
-
-            webDriver.Dispose();
         }
     }
 }

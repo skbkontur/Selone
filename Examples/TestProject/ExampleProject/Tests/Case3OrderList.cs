@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Kontur.Selone.Properties;
 using NUnit.Framework;
 using Solutions.Application;
@@ -6,14 +6,12 @@ using Solutions.Magic;
 
 namespace Solutions.Tests
 {
-    public class Case3OrderList
+    public class Case3OrderList : TestBase
     {
         [Test]
         public void TestFilter()
         {
-            var webDriver = new ChromeDriverFactory().Create();
-            webDriver.Navigate().GoToUrl(Urls.OrderList);
-            var page = new OrderListPage(webDriver);
+            var page = Navigation.GoToPage<OrderListPage>(GetWebDriver(), Urls.OrderList);
 
             // ожидание пяти строк в таблице
             page.OrderTable.Items.Count.Wait().EqualTo(5);
@@ -27,16 +25,12 @@ namespace Solutions.Tests
             page.OrderTable.Items.Count.Wait().EqualTo(2);
             // ожидание отсутствия пейджинга
             page.Paging.Present.Wait().EqualTo(false);
-
-            webDriver.Dispose();
         }
 
         [Test]
         public void TestDeleteOrder()
         {
-            var webDriver = new ChromeDriverFactory().Create();
-            webDriver.Navigate().GoToUrl(Urls.OrderList);
-            var page = new OrderListPage(webDriver);
+            var page = Navigation.GoToPage<OrderListPage>(GetWebDriver(), Urls.OrderList);
 
             // получение строки с ФИО "Назаров Иван"
             var order = page.OrderTable.Items.Wait().Single(x => x.Fio.Text, Is.EqualTo("Назаров Иван"));
@@ -51,16 +45,12 @@ namespace Solutions.Tests
 
             // ожидание идентификаторов заказов
             page.OrderTable.Items.Select(x => x.Id.Text).Wait().EqualTo(new[] {"xxx01", "xxx03", "xxx04", "xxx05"});
-
-            webDriver.Dispose();
         }
 
         [Test]
         public void TestEditOrder()
         {
-            var webDriver = new ChromeDriverFactory().Create();
-            webDriver.Navigate().GoToUrl(Urls.OrderList);
-            var page = new OrderListPage(webDriver);
+            var page = Navigation.GoToPage<OrderListPage>(GetWebDriver(), Urls.OrderList);
 
             // получение строки с ФИО "Назаров Иван"
             var order = page.OrderTable.Items.Wait().Single(x => x.Fio.Text, Is.EqualTo("Назаров Иван"));
@@ -71,16 +61,12 @@ namespace Solutions.Tests
             order.ReloadLink.Click();
             // ожидание суммы заказа 151
             order.Sum.Text.Wait().EqualTo(151);
-
-            webDriver.Dispose();
         }
 
         [Test]
         public void TestContent()
         {
-            var webDriver = new ChromeDriverFactory().Create();
-            webDriver.Navigate().GoToUrl(Urls.OrderList);
-            var page = new OrderListPage(webDriver);
+            var page = Navigation.GoToPage<OrderListPage>(GetWebDriver(), Urls.OrderList);
 
             // ожидание появления фильтра
             page.Filter.Present.Wait().EqualTo(true);
@@ -98,8 +84,6 @@ namespace Solutions.Tests
 
             // ожидание значений в строках ("идентификатор заказа", "заказа проверен", "сумма заказа")
             page.OrderTable.Items.Select(x => Props.Create(x.Id.Text, x.Verified.Checked, x.Sum.Text)).Wait().EquivalentTo(expected);
-
-            webDriver.Dispose();
         }
     }
 }
