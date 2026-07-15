@@ -1,6 +1,6 @@
 import * as React from "react";
 import {AccentColor, AccentColors, AccentColorType} from "src/Common/Colors";
-import CurrencyLabelInternal from "@skbkontur/react-ui/CurrencyLabel";
+import {CurrencyLabel as CurrencyLabelInternal} from "@skbkontur/react-ui";
 
 export interface CurrencyLabelProps {
     value: number;

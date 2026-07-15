@@ -1,1 +1,0 @@
-﻿(window as any).regeneratorRuntime = require("babel-runtime/regenerator");

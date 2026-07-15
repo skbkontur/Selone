@@ -6,35 +6,43 @@
   "author": {
     "name": "example"
   },
-  "typings": "./typings",
   "dependencies": {
-    "@babel/core": "7.28.5",
-    "@babel/preset-env": "7.28.5",
-    "@babel/preset-react": "7.28.5",
-    "@skbkontur/react-icons": "3.2.1",
-    "@skbkontur/react-ui": "0.53.15",
-    "@storybook/react": "4.1.18",
-    "@types/classnames": "2.3.0",
-    "@types/lodash.isequal": "4.5.2",
-    "@types/react": "16.14.68",
-    "@types/storybook__react": "4.0.2",
-    "babel-loader": "8.4.1",
+    "@babel/core": "7.29.7",
+    "@babel/preset-env": "7.29.7",
+    "@babel/preset-react": "7.29.7",
+    "@skbkontur/react-icons": "5.2.10",
+    "@skbkontur/react-selenium-testing": "0.2.1",
+    "@skbkontur/react-sorge": "0.2.1",
+    "@skbkontur/react-ui": "5.6.12",
     "classnames": "2.5.1",
-    "core-js": "3.9.1",
-    "less-loader": "4.1.0",
+    "less": "4.6.7",
+    "less-loader": "13.0.0",
     "lodash.isequal": "4.5.0",
-    "react": "15.7.0",
-    "react-dom": "15.7.0",
-    "style-loader": "0.23.1",
-    "ts-loader": "8.4.0",
-    "webpack": "4.47.0",
-    "whatwg-fetch": "3.6.2"
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "style-loader": "4.0.0",
+    "ts-loader": "9.6.2"
   },
   "scripts": {
-    "storybook": "start-storybook -p 7890 -c .storybook",
-    "build-storybook": "build-storybook"
+    "storybook": "storybook dev -p 7890 -c .storybook",
+    "build-storybook": "storybook build -c .storybook"
+  },
+  "overrides": {
+    "semver": "^7.5.2"
   },
   "devDependencies": {
-    "typescript": "5.9.3"
+    "@storybook/addon-webpack5-compiler-babel": "3.0.6",
+    "@storybook/react": "8.6.18",
+    "@storybook/react-webpack5": "8.6.18",
+    "@storybook/test": "8.6.18",
+    "@types/classnames": "2.3.0",
+    "@types/lodash.isequal": "4.5.8",
+    "@types/react": "17.0.93",
+    "@types/react-dom": "17.0.26",
+    "babel-loader": "9.2.1",
+    "css-loader": "7.1.4",
+    "storybook": "8.6.18",
+    "typescript": "5.9.3",
+    "webpack": "5.108.4"
   }
 }
