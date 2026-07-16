@@ -50,7 +50,7 @@ namespace Kontur.Selone.Tests.Tests.WebDrivers
             var sessionId2 = ((IHasSessionId) webDriver).SessionId;
             webDriverPool.Release(webDriver);
 
-            Assert.AreNotEqual(sessionId1, sessionId2);
+            Assert.That(sessionId2, Is.Not.EqualTo(sessionId1));
 
             webDriverPool.Clear();
         }
@@ -99,7 +99,7 @@ namespace Kontur.Selone.Tests.Tests.WebDrivers
                         secondUsingDrivers.Select(x => ((IHasSessionId) x).SessionId))
                 );
                 Assert.DoesNotThrow(() => driverPool.Clear());
-                Assert.IsTrue(firstUsingDrivers.All(x=> ((IHasSessionId) x).SessionId is null));
+                Assert.That(firstUsingDrivers.All(x=> ((IHasSessionId) x).SessionId is null), Is.True);
             });
         }
     }

@@ -15,22 +15,22 @@ namespace Kontur.Selone.Tests.Tests
             webDriver.OpenTestHtml("WebElementVisibilityExtensions");
             var page = new Page(webDriver);
 
-            Assert.False(page.Target.Displayed().Get());
+            Assert.That(page.Target.Displayed().Get(), Is.False);
 
             page.SetDisplayedButton.Click();
-            Assert.True(page.Target.Displayed().Get());
+            Assert.That(page.Target.Displayed().Get(), Is.True);
 
             page.SetVisibleButton.Click();
             //todo В прошлых версиях WebDriver было false, теперь же true
             //todo нужно решить какое поведение должно быть у Displayed & Visible
-            Assert.True(page.Target.Displayed().Get());
-            //Assert.False(page.Target.Displayed().Get());
+            Assert.That(page.Target.Displayed().Get(), Is.True);
+            //Assert.That(page.Target.Displayed().Get(), Is.False);
 
             page.SetHiddenButton.Click();
-            Assert.False(page.Target.Displayed().Get());
+            Assert.That(page.Target.Displayed().Get(), Is.False);
 
             page.SetAbsentButton.Click();
-            Assert.False(page.Target.Displayed().Get());
+            Assert.That(page.Target.Displayed().Get(), Is.False);
         }
 
         [Test]
@@ -40,19 +40,19 @@ namespace Kontur.Selone.Tests.Tests
             webDriver.OpenTestHtml("WebElementVisibilityExtensions");
             var page = new Page(webDriver);
 
-            Assert.False(page.Target.Present().Get());
+            Assert.That(page.Target.Present().Get(), Is.False);
 
             page.SetDisplayedButton.Click();
-            Assert.True(page.Target.Present().Get());
+            Assert.That(page.Target.Present().Get(), Is.True);
 
             page.SetVisibleButton.Click();
-            Assert.True(page.Target.Present().Get());
+            Assert.That(page.Target.Present().Get(), Is.True);
 
             page.SetHiddenButton.Click();
-            Assert.True(page.Target.Present().Get());
+            Assert.That(page.Target.Present().Get(), Is.True);
 
             page.SetAbsentButton.Click();
-            Assert.False(page.Target.Present().Get());
+            Assert.That(page.Target.Present().Get(), Is.False);
         }
 
         [Test]
@@ -62,19 +62,19 @@ namespace Kontur.Selone.Tests.Tests
             webDriver.OpenTestHtml("WebElementVisibilityExtensions");
             var page = new Page(webDriver);
 
-            Assert.False(page.Target.Visible().Get());
+            Assert.That(page.Target.Visible().Get(), Is.False);
 
             page.SetDisplayedButton.Click();
-            Assert.True(page.Target.Visible().Get());
+            Assert.That(page.Target.Visible().Get(), Is.True);
 
             page.SetVisibleButton.Click();
-            Assert.True(page.Target.Visible().Get());
+            Assert.That(page.Target.Visible().Get(), Is.True);
 
             page.SetHiddenButton.Click();
-            Assert.False(page.Target.Visible().Get());
+            Assert.That(page.Target.Visible().Get(), Is.False);
 
             page.SetAbsentButton.Click();
-            Assert.False(page.Target.Visible().Get());
+            Assert.That(page.Target.Visible().Get(), Is.False);
         }
 
         private class Page
