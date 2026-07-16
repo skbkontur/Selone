@@ -20,6 +20,6 @@
     <OutputPath>..\Build\Selone\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Selenium.WebDriver" Version="4.31.0" />
+    <PackageReference Include="Selenium.WebDriver" Version="4.45.0" />
   </ItemGroup>
 </Project>
