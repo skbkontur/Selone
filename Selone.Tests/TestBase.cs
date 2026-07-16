@@ -43,7 +43,7 @@ namespace Kontur.Selone.Tests
                     if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
                     {
                         PublishClientDebugLogs(webDriver);
-                        PublichScreenshot(webDriver, @"C:\temp\.screnshot", x => x);
+                        PublishScreenshot(webDriver, @"C:\temp\.screnshot", x => x);
                     }
                 }
             }
@@ -56,7 +56,7 @@ namespace Kontur.Selone.Tests
         protected IWebDriver Acquire(Browser browser)
         {
             var webDriver = BrowserPool.Instance.Acquire(browser);
-            acquiredWebDrivers.GetOrAdd(TestContext.CurrentContext.WorkerId, x => new List<IWebDriver>()).Add(webDriver);
+            acquiredWebDrivers.GetOrAdd(TestContext.CurrentContext.WorkerId, _ => new List<IWebDriver>()).Add(webDriver);
             return webDriver;
         }
 
@@ -83,7 +83,7 @@ namespace Kontur.Selone.Tests
             }
         }
 
-        private static void PublichScreenshot(IWebDriver webDriver, string dir, Func<string, string> transformTestName)
+        private static void PublishScreenshot(IWebDriver webDriver, string dir, Func<string, string> transformTestName)
         {
             try
             {
