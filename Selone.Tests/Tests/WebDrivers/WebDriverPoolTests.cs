@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using System.Threading;
 using Kontur.Selone.Extensions;
 using Kontur.Selone.Tests.Browsers;
 using Kontur.Selone.Tests.Browsers.Factories;
+using Kontur.Selone.Tests.Extensions;
 using Kontur.Selone.WebDrivers;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
@@ -20,17 +20,14 @@ namespace Kontur.Selone.Tests.Tests.WebDrivers
             using (var pooled = webDriverPool.AcquireWrapper())
             {
                 var webDriver = pooled.WrappedDriver;
-                webDriver.Navigate().GoToUrl("https://google.com");
-                Thread.Sleep(1000);
+                webDriver.OpenTestHtml("WebDriverPool");
             }
 
-            Thread.Sleep(1000);
             using (var pooled = webDriverPool.AcquireWrapper())
             {
                 var webDriver = pooled.WrappedDriver;
                 Assert.That(webDriver.Url, Is.EqualTo("about:blank"));
-                webDriver.Navigate().GoToUrl("https://google.com");
-                Thread.Sleep(1000);
+                webDriver.OpenTestHtml("WebDriverPool");
             }
 
             webDriverPool.Clear();
@@ -83,14 +80,14 @@ namespace Kontur.Selone.Tests.Tests.WebDrivers
             var firstUsingDrivers = new[] {driverPool.Acquire(), driverPool.Acquire()};
             foreach (var driver in firstUsingDrivers)
             {
-                driver.Navigate().GoToUrl("https://ya.ru");
+                driver.OpenTestHtml("WebDriverPool");
                 driverPool.Release(driver);
             }
 
             var secondUsingDrivers = new[] {driverPool.Acquire(), driverPool.Acquire()};
             foreach (var driver in secondUsingDrivers)
             {
-                driver.Navigate().GoToUrl("https://ya.ru/pogoda");
+                driver.OpenTestHtml("WebDriverPool");
                 driverPool.Release(driver);
             }
 
