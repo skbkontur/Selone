@@ -21,7 +21,7 @@ export default class NotificationSettings extends React.Component<UserSettingsPr
                 <Checkbox
                     data-tid={"Checkbox"}
                     checked={this.state.notificationsEnabled}
-                    onChange={(e, v) => this.setState({notificationsEnabled: v})}
+                    onChange={e => this.setState({notificationsEnabled: e.target.checked})}
                 >
                     Хочу получать уведомления
                 </Checkbox>
@@ -30,7 +30,7 @@ export default class NotificationSettings extends React.Component<UserSettingsPr
                     data-tid={"Input"}
                     value={this.state.email}
                     placeholder={"Адрес электронной почты"}
-                    onChange={(e, v) => this.setState({email: v})}
+                    onChange={e => this.setState({email: e.target.value})}
                 />}
             </Gapped>
         );

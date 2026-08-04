@@ -9,12 +9,12 @@ Selenium.WebDriver — это низкоуровневый API для веб-б�
 Selone не содержит в себе ассертов, но предоставляет возможность простого подключения сторонней библиотеки. Например, NUnit с `Assert.That` и `IResolveConstraint` или FluentAssertions с методом `Should()`.
 
 ## Пример работы с Selone
-В директории `Examples/TestProject/ExampleProject` находится [тестовый проект](Examples/TestProject/ExampleProject), написанный на C#. В нём демонстрируются основные возможности Селона. 
+В директории `Examples/TestProject/ExampleProject` находится [тестовый проект](Examples/TestProject/ExampleProject), написанный на C#. В нём демонстрируются основные возможности библиотеки. 
 
-В [readme](Examples/TestProject/readme.md) проекта написано как его запустить.
+В [readme](Examples/TestProject/readme.md) проекта написано как его запустить и приведены ссылки на примеры основных фич библиотеки.
 
 ## Как поставить 
 Подключить [Nuget пакет](https://www.nuget.org/packages/Kontur.Selone) в свой проект.
 
 ## Как писать тесты
-В заметке [Быстрый старт](docs/QuickStart.md) описаны основные шаги, необходимые при написании тестов. Там же есть пояснения некоторых возможностей Селона.
+В заметке [Быстрый старт](docs/QuickStart.md) описаны основные шаги, необходимые при написании тестов. Там же есть пояснения некоторых возможностей Selone.

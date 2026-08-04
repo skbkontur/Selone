@@ -25,5 +25,10 @@ namespace Solutions.Application
         public CurrencyLabel Sum { get; }
         public Link ReloadLink { get; }
         public Link RemoveLink { get; }
+
+        public void Click()
+        {
+            Container.Click();
+        }
     }
 }

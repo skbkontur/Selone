@@ -12,22 +12,22 @@
     "sourceMap": true,
     "noImplicitAny": true,
     "allowUnreachableCode": true,
+    "skipLibCheck": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es5",
     "jsx": "react",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
       "src/*": [
         "src/*"
-      ],
-      "*": [
-        "typings/*"
       ]
     }
   },
   "include": [
     "./src/**/*",
-    "./typings/**/*"
+    "./.storybook/**/*"
   ]
 }

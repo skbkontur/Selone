@@ -54,7 +54,8 @@ export default class CurrencyInput extends React.Component<CurrencyInputProps, C
         this.innerInput = element
     };
 
-    handleChange = (event: any, value: string) :void =>{
+    handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        const value = event.target.value;
         var formatted = value.replace(/[\.\/бю]/g, ",");
         if (formatted.match(/^\d{0,13}(\,\d{0,2})?$/)) {
             if (this.state.value !== formatted) {

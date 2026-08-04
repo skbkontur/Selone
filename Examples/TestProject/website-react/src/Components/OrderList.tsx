@@ -62,34 +62,41 @@ class OrderListFilter extends React.Component<OrderListFilterProps> {
     render() {
         return (
             <div>
-                <Gapped>
+                <Gapped gap={8}>
                     <Input
                         data-tid={"SearchInput"}
                         placeholder={"Начните вводить ФИО"}
                         value={this.props.value.search}
-                        onChange={(e, v) => this.props.onChange({search: v})}
+                        onChange={e => this.props.onChange({search: e.target.value})}
+                        width={224}
                     />
                     <Button
                         data-tid={"ResetButton"}
+                        width={96}
                         onClick={() => this.props.onChange({search: ""})}
                     >
                         Сбросить
                     </Button>
-                    <div style={{width: 2, height: "100%", background: "lightgrey"}}/>
+                    <div style={{width: 8, height: "100%", display: "flex", justifyContent: "center"}}>
+                        <div style={{width: 2, height: "100%", background: "lightgrey"}}/>
+                    </div>
                     <Button
                         data-tid={"SearchIvanButton"}
+                        width={128}
                         onClick={() => this.props.onChange({search: "Иван"})}
                     >
                         Найти Ивана
                     </Button>
                     <Button
                         data-tid={"SearchTitovButton"}
+                        width={128}
                         onClick={() => this.props.onChange({search: "Титов"})}
                     >
                         Найти Титова
                     </Button>
                     <Button
                         data-tid={"SearchNothingButton"}
+                        width={128}
                         onClick={() => this.props.onChange({search: "---"})}
                     >
                         Найти ничего
@@ -216,7 +223,7 @@ export default class OrderList extends React.Component<OrderListProps, OrderList
 
     private renderContent = () => {
         return (
-            <div data-tid={"Results"} style={{minHeight: 150, width: 750}}>
+            <div data-tid={"Results"} style={{minHeight: 150, width: 752}}>
                 <OrderListTable
                     reloading={this.state.reloading}
                     value={this.state.data}

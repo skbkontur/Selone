@@ -39,5 +39,10 @@ namespace Solutions.Controls
         {
             return new CurrencyLabel(contextBy.SearchContext, contextBy.By);
         }
+
+        public static Modal Modal(this IContextBy contextBy)
+        {
+            return new Modal(contextBy.SearchContext, contextBy.By);
+        }
     }
 }
